@@ -34,376 +34,347 @@ namespace Atalasoft.Demo.PdfViewer
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.workspaceViewer1 = new Atalasoft.Annotate.UI.AnnotateViewer();
-			this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
-			this.menuFile = new System.Windows.Forms.MenuItem();
-			this.menuOpen = new System.Windows.Forms.MenuItem();
-			this.menuSave = new System.Windows.Forms.MenuItem();
-			this.menuItemFind = new System.Windows.Forms.MenuItem();
-			this.menuExtractImages = new System.Windows.Forms.MenuItem();
-			this.menuGetInfo = new System.Windows.Forms.MenuItem();
-			this.menuItem7 = new System.Windows.Forms.MenuItem();
-			this.menuPrint = new System.Windows.Forms.MenuItem();
-			this.menuView = new System.Windows.Forms.MenuItem();
-			this.menuViewFullSize = new System.Windows.Forms.MenuItem();
-			this.menuViewFitWidth = new System.Windows.Forms.MenuItem();
-			this.menuViewBestFit = new System.Windows.Forms.MenuItem();
-			this.menuItem1 = new System.Windows.Forms.MenuItem();
-			this.menuItem6 = new System.Windows.Forms.MenuItem();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-			this.statusBar1 = new System.Windows.Forms.StatusBar();
-			this.statusBarPanel1 = new System.Windows.Forms.StatusBarPanel();
-			this.statusProgress = new System.Windows.Forms.StatusBarPanel();
-			this.thumbnailView1 = new Atalasoft.Imaging.WinControls.ThumbnailView();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
-			this.menuItem2 = new System.Windows.Forms.MenuItem();
-			this.menuItem3 = new System.Windows.Forms.MenuItem();
-			this.menuItem4 = new System.Windows.Forms.MenuItem();
-			this.menuItem5 = new System.Windows.Forms.MenuItem();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPages = new System.Windows.Forms.TabPage();
-			this.tabBookmarks = new System.Windows.Forms.TabPage();
-			this.treeBookmarks = new System.Windows.Forms.TreeView();
-			this.splitter1 = new System.Windows.Forms.Splitter();
-			((System.ComponentModel.ISupportInitialize)(this.statusBarPanel1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.statusProgress)).BeginInit();
-			this.tabControl1.SuspendLayout();
-			this.tabPages.SuspendLayout();
-			this.tabBookmarks.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// workspaceViewer1
-			// 
-			this.workspaceViewer1.AntialiasDisplay = Atalasoft.Imaging.WinControls.AntialiasDisplayMode.ReductionOnly;
-			this.workspaceViewer1.Asynchronous = true;
-			this.workspaceViewer1.BackColor = System.Drawing.SystemColors.Control;
-			this.workspaceViewer1.Centered = true;
-			this.workspaceViewer1.DefaultSecurity = null;
-			this.workspaceViewer1.DisplayProfile = null;
-			this.workspaceViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.workspaceViewer1.Location = new System.Drawing.Point(175, 0);
-			this.workspaceViewer1.Magnifier.BackColor = System.Drawing.Color.White;
-			this.workspaceViewer1.Magnifier.BorderColor = System.Drawing.Color.Black;
-			this.workspaceViewer1.Magnifier.Size = new System.Drawing.Size(100, 100);
-			this.workspaceViewer1.MouseWheelScrolling = true;
-			this.workspaceViewer1.Name = "workspaceViewer1";
-			this.workspaceViewer1.OutputProfile = null;
-			this.workspaceViewer1.RotationSnapInterval = 0F;
-			this.workspaceViewer1.RotationSnapThreshold = 0F;
-			this.workspaceViewer1.Selection = null;
-			this.workspaceViewer1.Size = new System.Drawing.Size(785, 686);
-			this.workspaceViewer1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-			this.workspaceViewer1.TabIndex = 0;
-			this.workspaceViewer1.Text = "workspaceViewer1";
-			this.workspaceViewer1.ToolTip = null;
-			this.workspaceViewer1.UndoManager.Levels = 0;
-			this.workspaceViewer1.ImageChanged += new Atalasoft.Imaging.ImageEventHandler(this.workspaceViewer1_ChangedImage);
-			this.workspaceViewer1.ProcessError += new Atalasoft.Imaging.ExceptionEventHandler(this.workspaceViewer1_ProcessError);
-			// 
-			// mainMenu1
-			// 
-			this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuFile,
-            this.menuView,
-            this.menuItem1});
-			// 
-			// menuFile
-			// 
-			this.menuFile.Index = 0;
-			this.menuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuOpen,
-            this.menuSave,
-            this.menuItemFind,
-            this.menuExtractImages,
-            this.menuGetInfo,
-            this.menuItem7,
-            this.menuPrint});
-			this.menuFile.Text = "File";
-			// 
-			// menuOpen
-			// 
-			this.menuOpen.Index = 0;
-			this.menuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
-			this.menuOpen.Text = "Open";
-			this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
-			// 
-			// menuSave
-			// 
-			this.menuSave.Index = 1;
-			this.menuSave.Text = "Save As";
-			this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
-			// 
-			// menuItemFind
-			// 
-			this.menuItemFind.Enabled = false;
-			this.menuItemFind.Index = 2;
-			this.menuItemFind.Shortcut = System.Windows.Forms.Shortcut.CtrlF;
-			this.menuItemFind.Text = "Find ...";
-			this.menuItemFind.Click += new System.EventHandler(this.menuItemFind_Click);
-			// 
-			// menuExtractImages
-			// 
-			this.menuExtractImages.Index = 3;
-			this.menuExtractImages.Text = "Extract Images";
-			this.menuExtractImages.Click += new System.EventHandler(this.menuExtractImages_Click);
-			// 
-			// menuGetInfo
-			// 
-			this.menuGetInfo.Index = 4;
-			this.menuGetInfo.Text = "Get Information";
-			this.menuGetInfo.Click += new System.EventHandler(this.menuGetInfo_Click);
-			// 
-			// menuItem7
-			// 
-			this.menuItem7.Index = 5;
-			this.menuItem7.Text = "-";
-			// 
-			// menuPrint
-			// 
-			this.menuPrint.Index = 6;
-			this.menuPrint.Text = "Print ... ";
-			this.menuPrint.Click += new System.EventHandler(this.menuPrint_Click);
-			// 
-			// menuView
-			// 
-			this.menuView.Index = 1;
-			this.menuView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuViewFullSize,
-            this.menuViewFitWidth,
-            this.menuViewBestFit});
-			this.menuView.Text = "View";
-			this.menuView.Click += new System.EventHandler(this.menuView_Click);
-			// 
-			// menuViewFullSize
-			// 
-			this.menuViewFullSize.Index = 0;
-			this.menuViewFullSize.Text = "Full Size";
-			this.menuViewFullSize.Click += new System.EventHandler(this.menuViewFullSize_Click);
-			// 
-			// menuViewFitWidth
-			// 
-			this.menuViewFitWidth.Index = 1;
-			this.menuViewFitWidth.Text = "Fit To Width";
-			this.menuViewFitWidth.Click += new System.EventHandler(this.menuViewFitWidth_Click);
-			// 
-			// menuViewBestFit
-			// 
-			this.menuViewBestFit.Index = 2;
-			this.menuViewBestFit.Text = "Best Fit";
-			this.menuViewBestFit.Click += new System.EventHandler(this.menuViewBestFit_Click);
-			// 
-			// menuItem1
-			// 
-			this.menuItem1.Index = 2;
-			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem6});
-			this.menuItem1.Text = "Help";
-			// 
-			// menuItem6
-			// 
-			this.menuItem6.Index = 0;
-			this.menuItem6.Text = "About ...";
-			this.menuItem6.Click += new System.EventHandler(this.menuItem6_Click);
-			// 
-			// openFileDialog1
-			// 
-			this.openFileDialog1.DefaultExt = "pdf";
-			this.openFileDialog1.Filter = "PDF Files|*.pdf|All Files|*.*";
-			// 
-			// saveFileDialog1
-			// 
-			this.saveFileDialog1.DefaultExt = "pdf";
-			this.saveFileDialog1.Filter = "PDF File(*.pdf)|*.pdf|TIFF File(*tif)|*.tif|JPEG File(*.jpg)|*.jpg";
-			// 
-			// statusBar1
-			// 
-			this.statusBar1.Location = new System.Drawing.Point(0, 686);
-			this.statusBar1.Name = "statusBar1";
-			this.statusBar1.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-            this.statusBarPanel1,
-            this.statusProgress});
-			this.statusBar1.ShowPanels = true;
-			this.statusBar1.Size = new System.Drawing.Size(960, 22);
-			this.statusBar1.TabIndex = 1;
-			// 
-			// statusBarPanel1
-			// 
-			this.statusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-			this.statusBarPanel1.Name = "statusBarPanel1";
-			this.statusBarPanel1.Width = 643;
-			// 
-			// statusProgress
-			// 
-			this.statusProgress.Name = "statusProgress";
-			this.statusProgress.Width = 300;
-			// 
-			// thumbnailView1
-			// 
-			this.thumbnailView1.BackColor = System.Drawing.Color.Gray;
-			this.thumbnailView1.CaptionLines = 0;
-			this.thumbnailView1.DisplayText = Atalasoft.Imaging.WinControls.ThumbViewAttribute.None;
-			this.thumbnailView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.thumbnailView1.DragSelectionColor = System.Drawing.Color.Red;
-			this.thumbnailView1.ForeColor = System.Drawing.SystemColors.WindowText;
-			this.thumbnailView1.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-			this.thumbnailView1.HighlightTextColor = System.Drawing.SystemColors.HighlightText;
-			this.thumbnailView1.LoadErrorMessage = "";
-			this.thumbnailView1.LoadMethod = Atalasoft.Imaging.WinControls.ThumbLoadMethod.EntireFolder;
-			this.thumbnailView1.Location = new System.Drawing.Point(3, 3);
-			this.thumbnailView1.Margins = new Atalasoft.Imaging.WinControls.Margin(4, 4, 4, 4);
-			this.thumbnailView1.SelectionMode = Atalasoft.Imaging.WinControls.ThumbnailSelectionMode.SingleSelect;
-			this.thumbnailView1.Name = "thumbnailView1";
-			this.thumbnailView1.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
-			this.thumbnailView1.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-			this.thumbnailView1.SelectionRectangleLineColor = System.Drawing.Color.Black;
-			this.thumbnailView1.Size = new System.Drawing.Size(155, 654);
-			this.thumbnailView1.TabIndex = 2;
-			this.thumbnailView1.Text = "thumbnailView1";
-			this.thumbnailView1.ThumbnailBackground = null;
-			this.thumbnailView1.ThumbnailOffset = new System.Drawing.Point(0, 0);
-			this.thumbnailView1.ThumbnailSize = new System.Drawing.Size(100, 100);
-			this.thumbnailView1.SelectedIndexChanged += new System.EventHandler(this.thumbnailView1_SelectedIndexChanged);
-			this.thumbnailView1.ThumbnailCreated += new Atalasoft.Imaging.WinControls.ThumbnailEventHandler(this.thumbnailView1_ThumbnailLoad);
-			// 
-			// progressBar1
-			// 
-			this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar1.Location = new System.Drawing.Point(646, 688);
-			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(300, 20);
-			this.progressBar1.TabIndex = 3;
-			// 
-			// menuItem2
-			// 
-			this.menuItem2.Index = -1;
-			this.menuItem2.Text = "10";
-			// 
-			// menuItem3
-			// 
-			this.menuItem3.Index = -1;
-			this.menuItem3.Text = "75";
-			// 
-			// menuItem4
-			// 
-			this.menuItem4.Index = -1;
-			this.menuItem4.Text = "200";
-			// 
-			// menuItem5
-			// 
-			this.menuItem5.Index = -1;
-			this.menuItem5.Text = "300";
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Controls.Add(this.tabPages);
-			this.tabControl1.Controls.Add(this.tabBookmarks);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.tabControl1.Location = new System.Drawing.Point(0, 0);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(169, 686);
-			this.tabControl1.TabIndex = 4;
-			// 
-			// tabPages
-			// 
-			this.tabPages.Controls.Add(this.thumbnailView1);
-			this.tabPages.Location = new System.Drawing.Point(4, 22);
-			this.tabPages.Name = "tabPages";
-			this.tabPages.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPages.Size = new System.Drawing.Size(161, 660);
-			this.tabPages.TabIndex = 0;
-			this.tabPages.Text = "Pages";
-			this.tabPages.UseVisualStyleBackColor = true;
-			// 
-			// tabBookmarks
-			// 
-			this.tabBookmarks.Controls.Add(this.treeBookmarks);
-			this.tabBookmarks.Location = new System.Drawing.Point(4, 22);
-			this.tabBookmarks.Name = "tabBookmarks";
-			this.tabBookmarks.Padding = new System.Windows.Forms.Padding(3);
-			this.tabBookmarks.Size = new System.Drawing.Size(161, 660);
-			this.tabBookmarks.TabIndex = 1;
-			this.tabBookmarks.Text = "Bookmarks";
-			this.tabBookmarks.UseVisualStyleBackColor = true;
-			// 
-			// treeBookmarks
-			// 
-			this.treeBookmarks.BackColor = System.Drawing.Color.Gray;
-			this.treeBookmarks.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeBookmarks.ForeColor = System.Drawing.Color.White;
-			this.treeBookmarks.Location = new System.Drawing.Point(3, 3);
-			this.treeBookmarks.Name = "treeBookmarks";
-			this.treeBookmarks.Size = new System.Drawing.Size(155, 654);
-			this.treeBookmarks.TabIndex = 0;
-			this.treeBookmarks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeBookmarks_AfterSelect);
-			// 
-			// splitter1
-			// 
-			this.splitter1.Location = new System.Drawing.Point(169, 0);
-			this.splitter1.Name = "splitter1";
-			this.splitter1.Size = new System.Drawing.Size(6, 686);
-			this.splitter1.TabIndex = 5;
-			this.splitter1.TabStop = false;
-			// 
-			// Form1
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(960, 708);
-			this.Controls.Add(this.workspaceViewer1);
-			this.Controls.Add(this.splitter1);
-			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.progressBar1);
-			this.Controls.Add(this.statusBar1);
-			this.Menu = this.mainMenu1;
-			this.Name = "Form1";
-			this.Text = "PDF Demo";
-			((System.ComponentModel.ISupportInitialize)(this.statusBarPanel1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.statusProgress)).EndInit();
-			this.tabControl1.ResumeLayout(false);
-			this.tabPages.ResumeLayout(false);
-			this.tabBookmarks.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this._workspaceViewer = new Atalasoft.Annotate.UI.AnnotateViewer();
+            this._mainMenu = new System.Windows.Forms.MainMenu(this.components);
+            this._menuFile = new System.Windows.Forms.MenuItem();
+            this._menuOpen = new System.Windows.Forms.MenuItem();
+            this._menuSave = new System.Windows.Forms.MenuItem();
+            this._menuItemFind = new System.Windows.Forms.MenuItem();
+            this._menuExtractImages = new System.Windows.Forms.MenuItem();
+            this._menuGetInfo = new System.Windows.Forms.MenuItem();
+            this._menuItemSplitter = new System.Windows.Forms.MenuItem();
+            this._menuPrint = new System.Windows.Forms.MenuItem();
+            this._menuView = new System.Windows.Forms.MenuItem();
+            this._menuViewFullSize = new System.Windows.Forms.MenuItem();
+            this._menuViewFitWidth = new System.Windows.Forms.MenuItem();
+            this._menuViewBestFit = new System.Windows.Forms.MenuItem();
+            this._menuHelp = new System.Windows.Forms.MenuItem();
+            this._menuAbout = new System.Windows.Forms.MenuItem();
+            this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this._saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this._statusBar = new System.Windows.Forms.StatusBar();
+            this._statusBarPanel = new System.Windows.Forms.StatusBarPanel();
+            this._statusProgress = new System.Windows.Forms.StatusBarPanel();
+            this._thumbnailView = new Atalasoft.Imaging.WinControls.ThumbnailView();
+            this._progressBar = new System.Windows.Forms.ProgressBar();
+            this._toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._tabControl = new System.Windows.Forms.TabControl();
+            this._tabPages = new System.Windows.Forms.TabPage();
+            this._tabBookmarks = new System.Windows.Forms.TabPage();
+            this._treeBookmarks = new System.Windows.Forms.TreeView();
+            this._splitter = new System.Windows.Forms.Splitter();
+            ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).BeginInit();
+            this._tabControl.SuspendLayout();
+            this._tabPages.SuspendLayout();
+            this._tabBookmarks.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // _workspaceViewer
+            // 
+            this._workspaceViewer.AntialiasDisplay = Atalasoft.Imaging.WinControls.AntialiasDisplayMode.ReductionOnly;
+            this._workspaceViewer.Asynchronous = true;
+            this._workspaceViewer.BackColor = System.Drawing.SystemColors.Control;
+            this._workspaceViewer.Centered = true;
+            this._workspaceViewer.DefaultSecurity = null;
+            this._workspaceViewer.DisplayProfile = null;
+            this._workspaceViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._workspaceViewer.Location = new System.Drawing.Point(175, 0);
+            this._workspaceViewer.Magnifier.BackColor = System.Drawing.Color.White;
+            this._workspaceViewer.Magnifier.BorderColor = System.Drawing.Color.Black;
+            this._workspaceViewer.Magnifier.Size = new System.Drawing.Size(100, 100);
+            this._workspaceViewer.MouseWheelScrolling = true;
+            this._workspaceViewer.Name = "_workspaceViewer";
+            this._workspaceViewer.OutputProfile = null;
+            this._workspaceViewer.RotationSnapInterval = 0F;
+            this._workspaceViewer.RotationSnapThreshold = 0F;
+            this._workspaceViewer.Selection = null;
+            this._workspaceViewer.Size = new System.Drawing.Size(785, 686);
+            this._workspaceViewer.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            this._workspaceViewer.TabIndex = 0;
+            this._workspaceViewer.Text = "workspaceViewer1";
+            this._workspaceViewer.ToolTip = null;
+            this._workspaceViewer.UndoManager.Levels = 0;
+            this._workspaceViewer.ProcessError += new Atalasoft.Imaging.ExceptionEventHandler(this.WorkspaceViewerOnProcessError);
+            this._workspaceViewer.ImageChanged += new Atalasoft.Imaging.ImageEventHandler(this.WorkspaceViewerOnChangedImage);
+            // 
+            // _mainMenu
+            // 
+            this._mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuFile,
+            this._menuView,
+            this._menuHelp});
+            // 
+            // _menuFile
+            // 
+            this._menuFile.Index = 0;
+            this._menuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuOpen,
+            this._menuSave,
+            this._menuItemFind,
+            this._menuExtractImages,
+            this._menuGetInfo,
+            this._menuItemSplitter,
+            this._menuPrint});
+            this._menuFile.Text = "File";
+            // 
+            // _menuOpen
+            // 
+            this._menuOpen.Index = 0;
+            this._menuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
+            this._menuOpen.Text = "Open";
+            this._menuOpen.Click += new System.EventHandler(this.MenuOpenOnClick);
+            // 
+            // _menuSave
+            // 
+            this._menuSave.Index = 1;
+            this._menuSave.Text = "Save As";
+            this._menuSave.Click += new System.EventHandler(this.MenuSaveOnClick);
+            // 
+            // _menuItemFind
+            // 
+            this._menuItemFind.Enabled = false;
+            this._menuItemFind.Index = 2;
+            this._menuItemFind.Shortcut = System.Windows.Forms.Shortcut.CtrlF;
+            this._menuItemFind.Text = "Find ...";
+            this._menuItemFind.Click += new System.EventHandler(this.MenuItemFindOnClick);
+            // 
+            // _menuExtractImages
+            // 
+            this._menuExtractImages.Index = 3;
+            this._menuExtractImages.Text = "Extract Images";
+            this._menuExtractImages.Click += new System.EventHandler(this.MenuExtractImagesOnClick);
+            // 
+            // _menuGetInfo
+            // 
+            this._menuGetInfo.Index = 4;
+            this._menuGetInfo.Text = "Get Information";
+            this._menuGetInfo.Click += new System.EventHandler(this.MenuGetInfoOnClick);
+            // 
+            // _menuItemSplitter
+            // 
+            this._menuItemSplitter.Index = 5;
+            this._menuItemSplitter.Text = "-";
+            // 
+            // _menuPrint
+            // 
+            this._menuPrint.Index = 6;
+            this._menuPrint.Text = "Print ... ";
+            this._menuPrint.Click += new System.EventHandler(this.MenuPrintOnClick);
+            // 
+            // _menuView
+            // 
+            this._menuView.Index = 1;
+            this._menuView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuViewFullSize,
+            this._menuViewFitWidth,
+            this._menuViewBestFit});
+            this._menuView.Text = "View";
+            this._menuView.Click += new System.EventHandler(this.MenuViewOnClick);
+            // 
+            // _menuViewFullSize
+            // 
+            this._menuViewFullSize.Index = 0;
+            this._menuViewFullSize.Text = "Full Size";
+            this._menuViewFullSize.Click += new System.EventHandler(this.MenuViewFullSizeOnClick);
+            // 
+            // _menuViewFitWidth
+            // 
+            this._menuViewFitWidth.Index = 1;
+            this._menuViewFitWidth.Text = "Fit To Width";
+            this._menuViewFitWidth.Click += new System.EventHandler(this.MenuViewFitWidthOnClick);
+            // 
+            // _menuViewBestFit
+            // 
+            this._menuViewBestFit.Index = 2;
+            this._menuViewBestFit.Text = "Best Fit";
+            this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewBestFitOnClick);
+            // 
+            // _menuHelp
+            // 
+            this._menuHelp.Index = 2;
+            this._menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuAbout});
+            this._menuHelp.Text = "Help";
+            // 
+            // _menuAbout
+            // 
+            this._menuAbout.Index = 0;
+            this._menuAbout.Text = "About ...";
+            this._menuAbout.Click += new System.EventHandler(this.MenuAboutOnClick);
+            // 
+            // _openFileDialog
+            // 
+            this._openFileDialog.DefaultExt = "pdf";
+            this._openFileDialog.Filter = "PDF Files|*.pdf|All Files|*.*";
+            // 
+            // _saveFileDialog
+            // 
+            this._saveFileDialog.DefaultExt = "pdf";
+            this._saveFileDialog.Filter = "PDF File(*.pdf)|*.pdf|TIFF File(*tif)|*.tif|JPEG File(*.jpg)|*.jpg";
+            // 
+            // _statusBar
+            // 
+            this._statusBar.Location = new System.Drawing.Point(0, 686);
+            this._statusBar.Name = "_statusBar";
+            this._statusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
+            this._statusBarPanel,
+            this._statusProgress});
+            this._statusBar.ShowPanels = true;
+            this._statusBar.Size = new System.Drawing.Size(960, 22);
+            this._statusBar.TabIndex = 1;
+            // 
+            // _statusBarPanel
+            // 
+            this._statusBarPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            this._statusBarPanel.Name = "_statusBarPanel";
+            this._statusBarPanel.Width = 643;
+            // 
+            // _statusProgress
+            // 
+            this._statusProgress.Name = "_statusProgress";
+            this._statusProgress.Width = 300;
+            // 
+            // _thumbnailView
+            // 
+            this._thumbnailView.BackColor = System.Drawing.Color.Gray;
+            this._thumbnailView.CaptionLines = 0;
+            this._thumbnailView.DisplayText = Atalasoft.Imaging.WinControls.ThumbViewAttribute.None;
+            this._thumbnailView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._thumbnailView.DragSelectionColor = System.Drawing.Color.Red;
+            this._thumbnailView.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._thumbnailView.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this._thumbnailView.HighlightTextColor = System.Drawing.SystemColors.HighlightText;
+            this._thumbnailView.LoadErrorMessage = "";
+            this._thumbnailView.LoadMethod = Atalasoft.Imaging.WinControls.ThumbLoadMethod.EntireFolder;
+            this._thumbnailView.Location = new System.Drawing.Point(3, 3);
+            this._thumbnailView.Margins = new Atalasoft.Imaging.WinControls.Margin(4, 4, 4, 4);
+            this._thumbnailView.Name = "_thumbnailView";
+            this._thumbnailView.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
+            this._thumbnailView.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this._thumbnailView.SelectionRectangleLineColor = System.Drawing.Color.Black;
+            this._thumbnailView.Size = new System.Drawing.Size(155, 654);
+            this._thumbnailView.TabIndex = 2;
+            this._thumbnailView.Text = "thumbnailView1";
+            this._thumbnailView.ThumbnailBackground = null;
+            this._thumbnailView.ThumbnailOffset = new System.Drawing.Point(0, 0);
+            this._thumbnailView.ThumbnailSize = new System.Drawing.Size(100, 100);
+            this._thumbnailView.SelectedIndexChanged += new System.EventHandler(this.ThumbnailViewOnSelectedIndexChanged);
+            this._thumbnailView.ThumbnailCreated += new Atalasoft.Imaging.WinControls.ThumbnailEventHandler(this.ThumbnailViewOnThumbnailLoad);
+            // 
+            // _progressBar
+            // 
+            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._progressBar.Location = new System.Drawing.Point(646, 688);
+            this._progressBar.Name = "_progressBar";
+            this._progressBar.Size = new System.Drawing.Size(300, 20);
+            this._progressBar.TabIndex = 3;
+            // 
+            // _tabControl
+            // 
+            this._tabControl.Controls.Add(this._tabPages);
+            this._tabControl.Controls.Add(this._tabBookmarks);
+            this._tabControl.Dock = System.Windows.Forms.DockStyle.Left;
+            this._tabControl.Location = new System.Drawing.Point(0, 0);
+            this._tabControl.Name = "_tabControl";
+            this._tabControl.SelectedIndex = 0;
+            this._tabControl.Size = new System.Drawing.Size(169, 686);
+            this._tabControl.TabIndex = 4;
+            // 
+            // _tabPages
+            // 
+            this._tabPages.Controls.Add(this._thumbnailView);
+            this._tabPages.Location = new System.Drawing.Point(4, 22);
+            this._tabPages.Name = "_tabPages";
+            this._tabPages.Padding = new System.Windows.Forms.Padding(3);
+            this._tabPages.Size = new System.Drawing.Size(161, 660);
+            this._tabPages.TabIndex = 0;
+            this._tabPages.Text = "Pages";
+            this._tabPages.UseVisualStyleBackColor = true;
+            // 
+            // _tabBookmarks
+            // 
+            this._tabBookmarks.Controls.Add(this._treeBookmarks);
+            this._tabBookmarks.Location = new System.Drawing.Point(4, 22);
+            this._tabBookmarks.Name = "_tabBookmarks";
+            this._tabBookmarks.Padding = new System.Windows.Forms.Padding(3);
+            this._tabBookmarks.Size = new System.Drawing.Size(161, 660);
+            this._tabBookmarks.TabIndex = 1;
+            this._tabBookmarks.Text = "Bookmarks";
+            this._tabBookmarks.UseVisualStyleBackColor = true;
+            // 
+            // _treeBookmarks
+            // 
+            this._treeBookmarks.BackColor = System.Drawing.Color.Gray;
+            this._treeBookmarks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._treeBookmarks.ForeColor = System.Drawing.Color.White;
+            this._treeBookmarks.Location = new System.Drawing.Point(3, 3);
+            this._treeBookmarks.Name = "_treeBookmarks";
+            this._treeBookmarks.Size = new System.Drawing.Size(155, 654);
+            this._treeBookmarks.TabIndex = 0;
+            this._treeBookmarks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeBookmarksOnAfterSelect);
+            // 
+            // _splitter
+            // 
+            this._splitter.Location = new System.Drawing.Point(169, 0);
+            this._splitter.Name = "_splitter";
+            this._splitter.Size = new System.Drawing.Size(6, 686);
+            this._splitter.TabIndex = 5;
+            this._splitter.TabStop = false;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(960, 708);
+            this.Controls.Add(this._workspaceViewer);
+            this.Controls.Add(this._splitter);
+            this.Controls.Add(this._tabControl);
+            this.Controls.Add(this._progressBar);
+            this.Controls.Add(this._statusBar);
+            this.Menu = this._mainMenu;
+            this.Name = "MainForm";
+            this.Text = "Atalasoft PDF Viewer Demo";
+            ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).EndInit();
+            this._tabControl.ResumeLayout(false);
+            this._tabPages.ResumeLayout(false);
+            this._tabBookmarks.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private Atalasoft.Annotate.UI.AnnotateViewer workspaceViewer1;
-		private Atalasoft.Imaging.WinControls.ThumbnailView thumbnailView1;
-		private System.Windows.Forms.Splitter splitter1;
-		private System.Windows.Forms.TabPage tabPages;
-		private System.Windows.Forms.TabPage tabBookmarks;
-		private System.Windows.Forms.TreeView treeBookmarks;
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.ToolTip toolTip1;
-		private System.Windows.Forms.MenuItem menuItem5;
-		private System.Windows.Forms.MenuItem menuItem4;
-		private System.Windows.Forms.MenuItem menuItem3;
-		private System.Windows.Forms.MenuItem menuItem2;
-		private System.Windows.Forms.ProgressBar progressBar1;
-		private System.Windows.Forms.StatusBarPanel statusProgress;
-		private System.Windows.Forms.StatusBarPanel statusBarPanel1;
-		private System.Windows.Forms.StatusBar statusBar1;
-		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-		private System.Windows.Forms.OpenFileDialog openFileDialog1;
-		private System.Windows.Forms.MenuItem menuItem1;
-		private System.Windows.Forms.MenuItem menuItem6;
-		private System.Windows.Forms.MenuItem menuViewBestFit;
-		private System.Windows.Forms.MenuItem menuViewFitWidth;
-		private System.Windows.Forms.MenuItem menuViewFullSize;
-		private System.Windows.Forms.MenuItem menuView;
-		private System.Windows.Forms.MenuItem menuPrint;
-		private System.Windows.Forms.MenuItem menuItem7;
-		private System.Windows.Forms.MenuItem menuGetInfo;
-		private System.Windows.Forms.MenuItem menuExtractImages;
-		private System.Windows.Forms.MenuItem menuItemFind;
-		private System.Windows.Forms.MenuItem menuSave;
-		private System.Windows.Forms.MenuItem menuOpen;
-		private System.Windows.Forms.MenuItem menuFile;
-		private System.Windows.Forms.MainMenu mainMenu1;
+		private Atalasoft.Annotate.UI.AnnotateViewer _workspaceViewer;
+		private Atalasoft.Imaging.WinControls.ThumbnailView _thumbnailView;
+		private System.Windows.Forms.Splitter _splitter;
+		private System.Windows.Forms.TabPage _tabPages;
+		private System.Windows.Forms.TabPage _tabBookmarks;
+		private System.Windows.Forms.TreeView _treeBookmarks;
+		private System.Windows.Forms.TabControl _tabControl;
+		private System.Windows.Forms.ToolTip _toolTip;
+		private System.Windows.Forms.ProgressBar _progressBar;
+		private System.Windows.Forms.StatusBarPanel _statusProgress;
+		private System.Windows.Forms.StatusBarPanel _statusBarPanel;
+		private System.Windows.Forms.StatusBar _statusBar;
+		private System.Windows.Forms.SaveFileDialog _saveFileDialog;
+		private System.Windows.Forms.OpenFileDialog _openFileDialog;
+		private System.Windows.Forms.MenuItem _menuHelp;
+		private System.Windows.Forms.MenuItem _menuAbout;
+		private System.Windows.Forms.MenuItem _menuViewBestFit;
+		private System.Windows.Forms.MenuItem _menuViewFitWidth;
+		private System.Windows.Forms.MenuItem _menuViewFullSize;
+		private System.Windows.Forms.MenuItem _menuView;
+		private System.Windows.Forms.MenuItem _menuPrint;
+		private System.Windows.Forms.MenuItem _menuItemSplitter;
+		private System.Windows.Forms.MenuItem _menuGetInfo;
+		private System.Windows.Forms.MenuItem _menuExtractImages;
+		private System.Windows.Forms.MenuItem _menuItemFind;
+		private System.Windows.Forms.MenuItem _menuSave;
+		private System.Windows.Forms.MenuItem _menuOpen;
+		private System.Windows.Forms.MenuItem _menuFile;
+		private System.Windows.Forms.MainMenu _mainMenu;
 	}
 }
 

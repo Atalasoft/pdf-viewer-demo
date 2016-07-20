@@ -114,4 +114,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="RequiresLicenseMessage" xml:space="preserve">
+    <value>This demo require a license for {0}.
+An evaluation license can be requested with our activation utility.
+
+Would you like to run this utility now?</value>
+  </data>
+  <data name="TitleRequiresLicenseMessage" xml:space="preserve">
+    <value>{0} License Required</value>
+  </data>
+  <data name="ActivationToolkitNotFoundMessage" xml:space="preserve">
+    <value>We were unable to location the activation utility on this system.
+Please run it from the start menu.</value>
+  </data>
+  <data name="TitleActivationToolkitNotFoundMessage" xml:space="preserve">
+    <value>AtalasoftToolkitActivation.exe Not Found</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Atalasoft PDF Viewer Demo</value>
+  </data>
+  <data name="TitleAboutForm" xml:space="preserve">
+    <value>About Atalasoft PDF Viewer Demo</value>
+  </data>
+  <data name="ProjectDescription" xml:space="preserve">
+    <value>Demonstrates how to view and save PDF files with DotImage and DotImage PDFRasterizer.  Rasterizers a small thumbnail of each page in the PDF asynchronously while loading the first page in the PDF.  Demonstrates use of the ThumbnailView control.
+
+</value>
+  </data>
+  <data name="TitleSearchMessage" xml:space="preserve">
+    <value>PDF Viewer Search</value>
+  </data>
+  <data name="TextNotFoundMessage" xml:space="preserve">
+    <value>The specified text was not found.</value>
+  </data>
+  <data name="TitleNoTextDataMessage" xml:space="preserve">
+    <value>No Text Data</value>
+  </data>
+  <data name="NoTextDataMessage" xml:space="preserve">
+    <value>This PDF file does not contain text data.</value>
+  </data>
 </root>

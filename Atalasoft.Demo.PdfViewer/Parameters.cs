@@ -14,8 +14,8 @@ namespace Atalasoft.Demo.PdfViewer
 		{
 			InitializeComponent();
 
-			this.Text = text;
-			this.Grid.SelectedObject = selectedObject;
+			Text = text;
+			_grid.SelectedObject = selectedObject;
 		}
 		
 		private void btnOk_Click(object sender, System.EventArgs e)

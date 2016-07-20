@@ -11,19 +11,19 @@ namespace Atalasoft.Demo.PdfViewer
 {
 	public partial class FindDialog : Form
 	{
-		public delegate void FindNextHandler(String text, bool matchCase, bool wholeWord);
-		public event FindNextHandler OnFindNext;
+		public delegate void FindNextHandler(string text, bool matchCase, bool wholeWord);
+		public event FindNextHandler FindNext;
 
 		public FindDialog()
 		{
 			InitializeComponent();
 		}
 
-		private void btnNext_Click(object sender, System.EventArgs e)
+		private void NextButtonOnClick(object sender, EventArgs e)
 		{
-			var handle = OnFindNext;
+			var handle = FindNext;
 			if (handle != null)
-				handle(txtFind.Text, cbMatchCase.Checked, cbWholeWord.Checked);
+				handle(_findTextBox.Text, _matchCaseCheckBox.Checked, _wholeWordCheckBox.Checked);
 		}
 	}
 }
