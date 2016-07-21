@@ -36,23 +36,22 @@ namespace Atalasoft.Demo.PdfViewer
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this._mainMenu = new System.Windows.Forms.MainMenu(this.components);
-            this._menuFile = new System.Windows.Forms.MenuItem();
-            this._menuOpen = new System.Windows.Forms.MenuItem();
-            this._menuSave = new System.Windows.Forms.MenuItem();
-            this._menuItemFind = new System.Windows.Forms.MenuItem();
-            this._menuExtractImages = new System.Windows.Forms.MenuItem();
-            this._menuGetInfo = new System.Windows.Forms.MenuItem();
-            this._menuItemSplitter = new System.Windows.Forms.MenuItem();
-            this._menuPrint = new System.Windows.Forms.MenuItem();
-            this._menuView = new System.Windows.Forms.MenuItem();
-            this._menuViewFullSize = new System.Windows.Forms.MenuItem();
-            this._menuViewFitWidth = new System.Windows.Forms.MenuItem();
-            this._menuViewBestFit = new System.Windows.Forms.MenuItem();
-            this._menuOptions = new System.Windows.Forms.MenuItem();
-            this._menuPdfDecoderSettings = new System.Windows.Forms.MenuItem();
-            this._menuHelp = new System.Windows.Forms.MenuItem();
-            this._menuAbout = new System.Windows.Forms.MenuItem();
+            this._menuView = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuViewFullSize = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuViewFitWidth = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuViewBestFit = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuPdfDecoderSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuItemFind = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuExtractImages = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuGetInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuItemSplitter = new System.Windows.Forms.ToolStripSeparator();
+            this._menuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this._saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this._statusBar = new System.Windows.Forms.StatusBar();
@@ -68,6 +67,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView = new Atalasoft.Imaging.WinControls.ThumbnailView();
             this._tabBookmarks = new System.Windows.Forms.TabPage();
             this._treeBookmarks = new System.Windows.Forms.TreeView();
+            this._mainMenu = new System.Windows.Forms.MenuStrip();
             this._toolStripMenu = new System.Windows.Forms.ToolStrip();
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._findButton = new System.Windows.Forms.ToolStripButton();
@@ -80,78 +80,13 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabControl.SuspendLayout();
             this._tabPages.SuspendLayout();
             this._tabBookmarks.SuspendLayout();
+            this._mainMenu.SuspendLayout();
             this._toolStripMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // _mainMenu
-            // 
-            this._mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this._menuFile,
-            this._menuView,
-            this._menuOptions,
-            this._menuHelp});
-            // 
-            // _menuFile
-            // 
-            this._menuFile.Index = 0;
-            this._menuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this._menuOpen,
-            this._menuSave,
-            this._menuItemFind,
-            this._menuExtractImages,
-            this._menuGetInfo,
-            this._menuItemSplitter,
-            this._menuPrint});
-            this._menuFile.Text = "File";
-            // 
-            // _menuOpen
-            // 
-            this._menuOpen.Index = 0;
-            this._menuOpen.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
-            this._menuOpen.Text = "Open";
-            this._menuOpen.Click += new System.EventHandler(this.MenuOpenOnClick);
-            // 
-            // _menuSave
-            // 
-            this._menuSave.Index = 1;
-            this._menuSave.Text = "Save As";
-            this._menuSave.Click += new System.EventHandler(this.MenuSaveOnClick);
-            // 
-            // _menuItemFind
-            // 
-            this._menuItemFind.Enabled = false;
-            this._menuItemFind.Index = 2;
-            this._menuItemFind.Shortcut = System.Windows.Forms.Shortcut.CtrlF;
-            this._menuItemFind.Text = "Find ...";
-            this._menuItemFind.Click += new System.EventHandler(this.MenuItemFindOnClick);
-            // 
-            // _menuExtractImages
-            // 
-            this._menuExtractImages.Index = 3;
-            this._menuExtractImages.Text = "Extract Images";
-            this._menuExtractImages.Click += new System.EventHandler(this.MenuExtractImagesOnClick);
-            // 
-            // _menuGetInfo
-            // 
-            this._menuGetInfo.Index = 4;
-            this._menuGetInfo.Text = "Get Information";
-            this._menuGetInfo.Click += new System.EventHandler(this.MenuGetInfoOnClick);
-            // 
-            // _menuItemSplitter
-            // 
-            this._menuItemSplitter.Index = 5;
-            this._menuItemSplitter.Text = "-";
-            // 
-            // _menuPrint
-            // 
-            this._menuPrint.Index = 6;
-            this._menuPrint.Text = "Print ... ";
-            this._menuPrint.Click += new System.EventHandler(this.MenuPrintOnClick);
-            // 
             // _menuView
             // 
-            this._menuView.Index = 1;
-            this._menuView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this._menuViewFullSize,
             this._menuViewFitWidth,
             this._menuViewBestFit});
@@ -160,47 +95,96 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             // _menuViewFullSize
             // 
-            this._menuViewFullSize.Index = 0;
             this._menuViewFullSize.Text = "Full Size";
             this._menuViewFullSize.Click += new System.EventHandler(this.MenuViewFullSizeOnClick);
             // 
             // _menuViewFitWidth
             // 
-            this._menuViewFitWidth.Index = 1;
             this._menuViewFitWidth.Text = "Fit To Width";
             this._menuViewFitWidth.Click += new System.EventHandler(this.MenuViewFitWidthOnClick);
             // 
             // _menuViewBestFit
             // 
-            this._menuViewBestFit.Index = 2;
             this._menuViewBestFit.Text = "Best Fit";
             this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewBestFitOnClick);
             // 
             // _menuOptions
             // 
-            this._menuOptions.Index = 2;
-            this._menuOptions.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this._menuPdfDecoderSettings});
             this._menuOptions.Text = "Options";
             // 
             // _menuPdfDecoderSettings
             // 
-            this._menuPdfDecoderSettings.Index = 0;
             this._menuPdfDecoderSettings.Text = "PDF decoder settings";
             this._menuPdfDecoderSettings.Click += new System.EventHandler(this.MenuPdfDecoderSettingsOnClick);
             // 
             // _menuHelp
             // 
-            this._menuHelp.Index = 3;
-            this._menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this._menuAbout});
             this._menuHelp.Text = "Help";
             // 
             // _menuAbout
             // 
-            this._menuAbout.Index = 0;
             this._menuAbout.Text = "About ...";
             this._menuAbout.Click += new System.EventHandler(this.MenuAboutOnClick);
+            // 
+            // _menuFile
+            // 
+            this._menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._menuOpen,
+            this._menuSave,
+            this._menuItemFind,
+            this._menuExtractImages,
+            this._menuGetInfo,
+            this._menuItemSplitter,
+            this._menuPrint});
+            this._menuFile.Name = "_menuFile";
+            this._menuFile.Size = new System.Drawing.Size(37, 20);
+            this._menuFile.Text = "File";
+            // 
+            // _menuOpen
+            // 
+            this._menuOpen.Name = "_menuOpen";
+            this._menuOpen.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
+            this._menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this._menuOpen.Size = new System.Drawing.Size(152, 22);
+            this._menuOpen.Text = "Open";
+            this._menuOpen.Click += new System.EventHandler(this.MenuOpenOnClick);
+            // 
+            // _menuSave
+            // 
+            this._menuSave.Text = "Save As";
+            this._menuSave.Click += new System.EventHandler(this.MenuSaveOnClick);
+            // 
+            // _menuItemFind
+            // 
+            this._menuItemFind.Enabled = false;
+            this._menuItemFind.Image = ((System.Drawing.Image)(resources.GetObject("_findButton.Image")));
+            this._menuItemFind.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this._menuItemFind.Text = "Find ...";
+            this._menuItemFind.Click += new System.EventHandler(this.MenuItemFindOnClick);
+            // 
+            // _menuExtractImages
+            // 
+            this._menuExtractImages.Text = "Extract Images";
+            this._menuExtractImages.Click += new System.EventHandler(this.MenuExtractImagesOnClick);
+            // 
+            // _menuGetInfo
+            // 
+            this._menuGetInfo.Text = "Get Information";
+            this._menuGetInfo.Click += new System.EventHandler(this.MenuGetInfoOnClick);
+            // 
+            // _menuItemSplitter
+            // 
+            this._menuItemSplitter.Text = "-";
+            // 
+            // _menuPrint
+            // 
+            this._menuPrint.Text = "Print ... ";
+            this._menuPrint.Image = ((System.Drawing.Image)(resources.GetObject("_printButton.Image")));
+            this._menuPrint.Click += new System.EventHandler(this.MenuPrintOnClick);
             // 
             // _openFileDialog
             // 
@@ -242,15 +226,15 @@ namespace Atalasoft.Demo.PdfViewer
             this._progressBar.Size = new System.Drawing.Size(300, 20);
             this._progressBar.TabIndex = 3;
             // 
-            // toolStripContainer1
+            // _toolStripContainer
             // 
             // 
-            // toolStripContainer1.ContentPanel
+            // _toolStripContainer.ContentPanel
             // 
             this._toolStripContainer.ContentPanel.Controls.Add(this._workspaceViewer);
             this._toolStripContainer.ContentPanel.Controls.Add(this._splitter);
             this._toolStripContainer.ContentPanel.Controls.Add(this._tabControl);
-            this._toolStripContainer.ContentPanel.Size = new System.Drawing.Size(960, 661);
+            this._toolStripContainer.ContentPanel.Size = new System.Drawing.Size(960, 637);
             this._toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._toolStripContainer.Location = new System.Drawing.Point(0, 0);
             this._toolStripContainer.Name = "_toolStripContainer";
@@ -258,8 +242,9 @@ namespace Atalasoft.Demo.PdfViewer
             this._toolStripContainer.TabIndex = 6;
             this._toolStripContainer.Text = "toolStripContainer1";
             // 
-            // toolStripContainer1.TopToolStripPanel
+            // _toolStripContainer.TopToolStripPanel
             // 
+            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mainMenu);
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._toolStripMenu);
             // 
             // _workspaceViewer
@@ -281,7 +266,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._workspaceViewer.RotationSnapInterval = 0F;
             this._workspaceViewer.RotationSnapThreshold = 0F;
             this._workspaceViewer.Selection = null;
-            this._workspaceViewer.Size = new System.Drawing.Size(785, 661);
+            this._workspaceViewer.Size = new System.Drawing.Size(785, 637);
             this._workspaceViewer.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             this._workspaceViewer.TabIndex = 6;
             this._workspaceViewer.Text = "workspaceViewer1";
@@ -294,7 +279,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._splitter.Location = new System.Drawing.Point(169, 0);
             this._splitter.Name = "_splitter";
-            this._splitter.Size = new System.Drawing.Size(6, 661);
+            this._splitter.Size = new System.Drawing.Size(6, 637);
             this._splitter.TabIndex = 8;
             this._splitter.TabStop = false;
             // 
@@ -306,7 +291,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabControl.Location = new System.Drawing.Point(0, 0);
             this._tabControl.Name = "_tabControl";
             this._tabControl.SelectedIndex = 0;
-            this._tabControl.Size = new System.Drawing.Size(169, 661);
+            this._tabControl.Size = new System.Drawing.Size(169, 637);
             this._tabControl.TabIndex = 7;
             // 
             // _tabPages
@@ -315,7 +300,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabPages.Location = new System.Drawing.Point(4, 22);
             this._tabPages.Name = "_tabPages";
             this._tabPages.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPages.Size = new System.Drawing.Size(161, 635);
+            this._tabPages.Size = new System.Drawing.Size(161, 611);
             this._tabPages.TabIndex = 0;
             this._tabPages.Text = "Pages";
             this._tabPages.UseVisualStyleBackColor = true;
@@ -338,7 +323,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
             this._thumbnailView.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this._thumbnailView.SelectionRectangleLineColor = System.Drawing.Color.Black;
-            this._thumbnailView.Size = new System.Drawing.Size(155, 629);
+            this._thumbnailView.Size = new System.Drawing.Size(155, 605);
             this._thumbnailView.TabIndex = 2;
             this._thumbnailView.Text = "thumbnailView1";
             this._thumbnailView.ThumbnailBackground = null;
@@ -353,7 +338,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabBookmarks.Location = new System.Drawing.Point(4, 22);
             this._tabBookmarks.Name = "_tabBookmarks";
             this._tabBookmarks.Padding = new System.Windows.Forms.Padding(3);
-            this._tabBookmarks.Size = new System.Drawing.Size(161, 635);
+            this._tabBookmarks.Size = new System.Drawing.Size(161, 611);
             this._tabBookmarks.TabIndex = 1;
             this._tabBookmarks.Text = "Bookmarks";
             this._tabBookmarks.UseVisualStyleBackColor = true;
@@ -366,18 +351,34 @@ namespace Atalasoft.Demo.PdfViewer
             this._treeBookmarks.ForeColor = System.Drawing.Color.Black;
             this._treeBookmarks.Location = new System.Drawing.Point(3, 3);
             this._treeBookmarks.Name = "_treeBookmarks";
-            this._treeBookmarks.Size = new System.Drawing.Size(155, 629);
+            this._treeBookmarks.Size = new System.Drawing.Size(155, 605);
             this._treeBookmarks.TabIndex = 0;
             this._treeBookmarks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeBookmarksOnAfterSelect);
             // 
-            // toolStrip1
+            // _mainMenu
+            // 
+            this._mainMenu.Dock = System.Windows.Forms.DockStyle.None;
+		    this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[]
+		    {
+		        this._menuFile, 
+                this._menuView, 
+                this._menuOptions,
+		        this._menuHelp
+		    });
+            this._mainMenu.Location = new System.Drawing.Point(0, 0);
+            this._mainMenu.Name = "_mainMenu";
+            this._mainMenu.Size = new System.Drawing.Size(960, 24);
+            this._mainMenu.TabIndex = 1;
+            this._mainMenu.Text = "_mainMenu";
+            // 
+            // _toolStripMenu
             // 
             this._toolStripMenu.Dock = System.Windows.Forms.DockStyle.None;
             this._toolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openButton,
             this._findButton,
             this._printButton});
-            this._toolStripMenu.Location = new System.Drawing.Point(3, 0);
+            this._toolStripMenu.Location = new System.Drawing.Point(3, 24);
             this._toolStripMenu.Name = "_toolStripMenu";
             this._toolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._toolStripMenu.Size = new System.Drawing.Size(81, 25);
@@ -423,7 +424,7 @@ namespace Atalasoft.Demo.PdfViewer
             this.Controls.Add(this._toolStripContainer);
             this.Controls.Add(this._progressBar);
             this.Controls.Add(this._statusBar);
-            this.Menu = this._mainMenu;
+            this.MainMenuStrip = this._mainMenu;
             this.Name = "MainForm";
             this.Text = "Atalasoft PDF Viewer Demo";
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).EndInit();
@@ -436,6 +437,8 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabControl.ResumeLayout(false);
             this._tabPages.ResumeLayout(false);
             this._tabBookmarks.ResumeLayout(false);
+            this._mainMenu.ResumeLayout(false);
+            this._mainMenu.PerformLayout();
             this._toolStripMenu.ResumeLayout(false);
             this._toolStripMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -451,23 +454,22 @@ namespace Atalasoft.Demo.PdfViewer
 		private System.Windows.Forms.StatusBar _statusBar;
 		private System.Windows.Forms.SaveFileDialog _saveFileDialog;
 		private System.Windows.Forms.OpenFileDialog _openFileDialog;
-		private System.Windows.Forms.MenuItem _menuHelp;
-		private System.Windows.Forms.MenuItem _menuAbout;
-		private System.Windows.Forms.MenuItem _menuViewBestFit;
-		private System.Windows.Forms.MenuItem _menuViewFitWidth;
-		private System.Windows.Forms.MenuItem _menuViewFullSize;
-		private System.Windows.Forms.MenuItem _menuView;
-		private System.Windows.Forms.MenuItem _menuPrint;
-		private System.Windows.Forms.MenuItem _menuItemSplitter;
-		private System.Windows.Forms.MenuItem _menuGetInfo;
-		private System.Windows.Forms.MenuItem _menuExtractImages;
-		private System.Windows.Forms.MenuItem _menuItemFind;
-		private System.Windows.Forms.MenuItem _menuSave;
-		private System.Windows.Forms.MenuItem _menuOpen;
-		private System.Windows.Forms.MenuItem _menuFile;
-		private System.Windows.Forms.MainMenu _mainMenu;
-        private System.Windows.Forms.MenuItem _menuOptions;
-        private System.Windows.Forms.MenuItem _menuPdfDecoderSettings;
+        private System.Windows.Forms.ToolStripMenuItem _menuHelp;
+        private System.Windows.Forms.ToolStripMenuItem _menuAbout;
+        private System.Windows.Forms.ToolStripMenuItem _menuViewBestFit;
+        private System.Windows.Forms.ToolStripMenuItem _menuViewFitWidth;
+        private System.Windows.Forms.ToolStripMenuItem _menuViewFullSize;
+        private System.Windows.Forms.ToolStripMenuItem _menuView;
+        private System.Windows.Forms.ToolStripMenuItem _menuPrint;
+        private System.Windows.Forms.ToolStripSeparator _menuItemSplitter;
+        private System.Windows.Forms.ToolStripMenuItem _menuGetInfo;
+        private System.Windows.Forms.ToolStripMenuItem _menuExtractImages;
+        private System.Windows.Forms.ToolStripMenuItem _menuItemFind;
+        private System.Windows.Forms.ToolStripMenuItem _menuSave;
+        private System.Windows.Forms.ToolStripMenuItem _menuOpen;
+        private System.Windows.Forms.ToolStripMenuItem _menuFile;
+        private System.Windows.Forms.ToolStripMenuItem _menuOptions;
+        private System.Windows.Forms.ToolStripMenuItem _menuPdfDecoderSettings;
         private System.Windows.Forms.ToolStripContainer _toolStripContainer;
         private Annotate.UI.AnnotateViewer _workspaceViewer;
         private System.Windows.Forms.Splitter _splitter;
@@ -480,6 +482,7 @@ namespace Atalasoft.Demo.PdfViewer
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _findButton;
         private System.Windows.Forms.ToolStripButton _printButton;
+        private System.Windows.Forms.MenuStrip _mainMenu;
 	}
 }
 
