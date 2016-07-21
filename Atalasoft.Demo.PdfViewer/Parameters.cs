@@ -16,16 +16,6 @@ namespace Atalasoft.Demo.PdfViewer
 
 			Text = text;
 			_grid.SelectedObject = selectedObject;
-		}
-		
-		private void btnOk_Click(object sender, System.EventArgs e)
-		{
-
-		}
-
-		private void Parameters_Load(object sender, System.EventArgs e)
-		{
-
-		}
+        }
 	}
 }

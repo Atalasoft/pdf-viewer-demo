@@ -51,6 +51,8 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuViewBestFit = new System.Windows.Forms.MenuItem();
             this._menuHelp = new System.Windows.Forms.MenuItem();
             this._menuAbout = new System.Windows.Forms.MenuItem();
+            this._menuOptions = new System.Windows.Forms.MenuItem();
+            this._menuPdfDecoderSettings = new System.Windows.Forms.MenuItem();
             this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this._saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this._statusBar = new System.Windows.Forms.StatusBar();
@@ -104,6 +106,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this._menuFile,
             this._menuView,
+            this._menuOptions,
             this._menuHelp});
             // 
             // _menuFile
@@ -193,7 +196,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             // _menuHelp
             // 
-            this._menuHelp.Index = 2;
+            this._menuHelp.Index = 3;
             this._menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this._menuAbout});
             this._menuHelp.Text = "Help";
@@ -203,6 +206,19 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuAbout.Index = 0;
             this._menuAbout.Text = "About ...";
             this._menuAbout.Click += new System.EventHandler(this.MenuAboutOnClick);
+            // 
+            // _menuOptions
+            // 
+            this._menuOptions.Index = 2;
+            this._menuOptions.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuPdfDecoderSettings});
+            this._menuOptions.Text = "Options";
+            // 
+            // _menuPdfDecoderSettings
+            // 
+            this._menuPdfDecoderSettings.Index = 0;
+            this._menuPdfDecoderSettings.Text = "PDF decoder settings";
+            this._menuPdfDecoderSettings.Click += new System.EventHandler(this.MenuPdfDecoderSettingsOnClick);
             // 
             // _openFileDialog
             // 
@@ -375,6 +391,8 @@ namespace Atalasoft.Demo.PdfViewer
 		private System.Windows.Forms.MenuItem _menuOpen;
 		private System.Windows.Forms.MenuItem _menuFile;
 		private System.Windows.Forms.MainMenu _mainMenu;
+        private System.Windows.Forms.MenuItem _menuOptions;
+        private System.Windows.Forms.MenuItem _menuPdfDecoderSettings;
 	}
 }
 

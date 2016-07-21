@@ -81,13 +81,7 @@ namespace Atalasoft.Demo.PdfViewer
 
             var file = _openFileDialog.FileName;
             var frameCount = RegisteredDecoders.GetImageInfo(file, 0).FrameCount;
-
-            //set decoder properties
-            using (Form frm = new Parameters("PDF Decoder Properties", _pdfDecoder))
-            {
-                if (frm.ShowDialog(this) != DialogResult.OK)
-                    return;
-            }
+            
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
 
@@ -353,6 +347,15 @@ namespace Atalasoft.Demo.PdfViewer
             if (!found)
             {
                 MessageBox.Show(Resources.TextNotFoundMessage, Resources.TitleSearchMessage, MessageBoxButtons.OK);
+            }
+        }
+        
+        private void MenuPdfDecoderSettingsOnClick(object sender, EventArgs e)
+        {
+            //set decoder properties
+            using (Form frm = new Parameters("PDF Decoder Properties", _pdfDecoder))
+            {
+                frm.ShowDialog(this);
             }
         }
 
