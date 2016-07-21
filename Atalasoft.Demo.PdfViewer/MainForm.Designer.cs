@@ -35,7 +35,7 @@ namespace Atalasoft.Demo.PdfViewer
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this._workspaceViewer = new Atalasoft.Annotate.UI.AnnotateViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainMenu = new System.Windows.Forms.MainMenu(this.components);
             this._menuFile = new System.Windows.Forms.MenuItem();
             this._menuOpen = new System.Windows.Forms.MenuItem();
@@ -49,57 +49,39 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuViewFullSize = new System.Windows.Forms.MenuItem();
             this._menuViewFitWidth = new System.Windows.Forms.MenuItem();
             this._menuViewBestFit = new System.Windows.Forms.MenuItem();
-            this._menuHelp = new System.Windows.Forms.MenuItem();
-            this._menuAbout = new System.Windows.Forms.MenuItem();
             this._menuOptions = new System.Windows.Forms.MenuItem();
             this._menuPdfDecoderSettings = new System.Windows.Forms.MenuItem();
+            this._menuHelp = new System.Windows.Forms.MenuItem();
+            this._menuAbout = new System.Windows.Forms.MenuItem();
             this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this._saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this._statusBar = new System.Windows.Forms.StatusBar();
             this._statusBarPanel = new System.Windows.Forms.StatusBarPanel();
             this._statusProgress = new System.Windows.Forms.StatusBarPanel();
-            this._thumbnailView = new Atalasoft.Imaging.WinControls.ThumbnailView();
             this._progressBar = new System.Windows.Forms.ProgressBar();
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this._toolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this._workspaceViewer = new Atalasoft.Annotate.UI.AnnotateViewer();
+            this._splitter = new System.Windows.Forms.Splitter();
             this._tabControl = new System.Windows.Forms.TabControl();
             this._tabPages = new System.Windows.Forms.TabPage();
+            this._thumbnailView = new Atalasoft.Imaging.WinControls.ThumbnailView();
             this._tabBookmarks = new System.Windows.Forms.TabPage();
             this._treeBookmarks = new System.Windows.Forms.TreeView();
-            this._splitter = new System.Windows.Forms.Splitter();
+            this._toolStripMenu = new System.Windows.Forms.ToolStrip();
+            this._openButton = new System.Windows.Forms.ToolStripButton();
+            this._findButton = new System.Windows.Forms.ToolStripButton();
+            this._printButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).BeginInit();
+            this._toolStripContainer.ContentPanel.SuspendLayout();
+            this._toolStripContainer.TopToolStripPanel.SuspendLayout();
+            this._toolStripContainer.SuspendLayout();
             this._tabControl.SuspendLayout();
             this._tabPages.SuspendLayout();
             this._tabBookmarks.SuspendLayout();
+            this._toolStripMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // _workspaceViewer
-            // 
-            this._workspaceViewer.AntialiasDisplay = Atalasoft.Imaging.WinControls.AntialiasDisplayMode.ReductionOnly;
-            this._workspaceViewer.Asynchronous = true;
-            this._workspaceViewer.BackColor = System.Drawing.SystemColors.Control;
-            this._workspaceViewer.Centered = true;
-            this._workspaceViewer.DefaultSecurity = null;
-            this._workspaceViewer.DisplayProfile = null;
-            this._workspaceViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._workspaceViewer.Location = new System.Drawing.Point(175, 0);
-            this._workspaceViewer.Magnifier.BackColor = System.Drawing.Color.White;
-            this._workspaceViewer.Magnifier.BorderColor = System.Drawing.Color.Black;
-            this._workspaceViewer.Magnifier.Size = new System.Drawing.Size(100, 100);
-            this._workspaceViewer.MouseWheelScrolling = true;
-            this._workspaceViewer.Name = "_workspaceViewer";
-            this._workspaceViewer.OutputProfile = null;
-            this._workspaceViewer.RotationSnapInterval = 0F;
-            this._workspaceViewer.RotationSnapThreshold = 0F;
-            this._workspaceViewer.Selection = null;
-            this._workspaceViewer.Size = new System.Drawing.Size(785, 686);
-            this._workspaceViewer.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            this._workspaceViewer.TabIndex = 0;
-            this._workspaceViewer.Text = "workspaceViewer1";
-            this._workspaceViewer.ToolTip = null;
-            this._workspaceViewer.UndoManager.Levels = 0;
-            this._workspaceViewer.ProcessError += new Atalasoft.Imaging.ExceptionEventHandler(this.WorkspaceViewerOnProcessError);
-            this._workspaceViewer.ImageChanged += new Atalasoft.Imaging.ImageEventHandler(this.WorkspaceViewerOnChangedImage);
             // 
             // _mainMenu
             // 
@@ -194,19 +176,6 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuViewBestFit.Text = "Best Fit";
             this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewBestFitOnClick);
             // 
-            // _menuHelp
-            // 
-            this._menuHelp.Index = 3;
-            this._menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this._menuAbout});
-            this._menuHelp.Text = "Help";
-            // 
-            // _menuAbout
-            // 
-            this._menuAbout.Index = 0;
-            this._menuAbout.Text = "About ...";
-            this._menuAbout.Click += new System.EventHandler(this.MenuAboutOnClick);
-            // 
             // _menuOptions
             // 
             this._menuOptions.Index = 2;
@@ -219,6 +188,19 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuPdfDecoderSettings.Index = 0;
             this._menuPdfDecoderSettings.Text = "PDF decoder settings";
             this._menuPdfDecoderSettings.Click += new System.EventHandler(this.MenuPdfDecoderSettingsOnClick);
+            // 
+            // _menuHelp
+            // 
+            this._menuHelp.Index = 3;
+            this._menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this._menuAbout});
+            this._menuHelp.Text = "Help";
+            // 
+            // _menuAbout
+            // 
+            this._menuAbout.Index = 0;
+            this._menuAbout.Text = "About ...";
+            this._menuAbout.Click += new System.EventHandler(this.MenuAboutOnClick);
             // 
             // _openFileDialog
             // 
@@ -252,9 +234,95 @@ namespace Atalasoft.Demo.PdfViewer
             this._statusProgress.Name = "_statusProgress";
             this._statusProgress.Width = 300;
             // 
+            // _progressBar
+            // 
+            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._progressBar.Location = new System.Drawing.Point(646, 688);
+            this._progressBar.Name = "_progressBar";
+            this._progressBar.Size = new System.Drawing.Size(300, 20);
+            this._progressBar.TabIndex = 3;
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this._toolStripContainer.ContentPanel.Controls.Add(this._workspaceViewer);
+            this._toolStripContainer.ContentPanel.Controls.Add(this._splitter);
+            this._toolStripContainer.ContentPanel.Controls.Add(this._tabControl);
+            this._toolStripContainer.ContentPanel.Size = new System.Drawing.Size(960, 661);
+            this._toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._toolStripContainer.Location = new System.Drawing.Point(0, 0);
+            this._toolStripContainer.Name = "_toolStripContainer";
+            this._toolStripContainer.Size = new System.Drawing.Size(960, 686);
+            this._toolStripContainer.TabIndex = 6;
+            this._toolStripContainer.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._toolStripMenu);
+            // 
+            // _workspaceViewer
+            // 
+            this._workspaceViewer.AntialiasDisplay = Atalasoft.Imaging.WinControls.AntialiasDisplayMode.ReductionOnly;
+            this._workspaceViewer.Asynchronous = true;
+            this._workspaceViewer.BackColor = System.Drawing.SystemColors.Control;
+            this._workspaceViewer.Centered = true;
+            this._workspaceViewer.DefaultSecurity = null;
+            this._workspaceViewer.DisplayProfile = null;
+            this._workspaceViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._workspaceViewer.Location = new System.Drawing.Point(175, 0);
+            this._workspaceViewer.Magnifier.BackColor = System.Drawing.Color.White;
+            this._workspaceViewer.Magnifier.BorderColor = System.Drawing.Color.Black;
+            this._workspaceViewer.Magnifier.Size = new System.Drawing.Size(100, 100);
+            this._workspaceViewer.MouseWheelScrolling = true;
+            this._workspaceViewer.Name = "_workspaceViewer";
+            this._workspaceViewer.OutputProfile = null;
+            this._workspaceViewer.RotationSnapInterval = 0F;
+            this._workspaceViewer.RotationSnapThreshold = 0F;
+            this._workspaceViewer.Selection = null;
+            this._workspaceViewer.Size = new System.Drawing.Size(785, 661);
+            this._workspaceViewer.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            this._workspaceViewer.TabIndex = 6;
+            this._workspaceViewer.Text = "workspaceViewer1";
+            this._workspaceViewer.ToolTip = null;
+            this._workspaceViewer.UndoManager.Levels = 0;
+            this._workspaceViewer.ProcessError += new Atalasoft.Imaging.ExceptionEventHandler(this.WorkspaceViewerOnProcessError);
+            this._workspaceViewer.ImageChanged += new Atalasoft.Imaging.ImageEventHandler(this.WorkspaceViewerOnChangedImage);
+            // 
+            // _splitter
+            // 
+            this._splitter.Location = new System.Drawing.Point(169, 0);
+            this._splitter.Name = "_splitter";
+            this._splitter.Size = new System.Drawing.Size(6, 661);
+            this._splitter.TabIndex = 8;
+            this._splitter.TabStop = false;
+            // 
+            // _tabControl
+            // 
+            this._tabControl.Controls.Add(this._tabPages);
+            this._tabControl.Controls.Add(this._tabBookmarks);
+            this._tabControl.Dock = System.Windows.Forms.DockStyle.Left;
+            this._tabControl.Location = new System.Drawing.Point(0, 0);
+            this._tabControl.Name = "_tabControl";
+            this._tabControl.SelectedIndex = 0;
+            this._tabControl.Size = new System.Drawing.Size(169, 661);
+            this._tabControl.TabIndex = 7;
+            // 
+            // _tabPages
+            // 
+            this._tabPages.Controls.Add(this._thumbnailView);
+            this._tabPages.Location = new System.Drawing.Point(4, 22);
+            this._tabPages.Name = "_tabPages";
+            this._tabPages.Padding = new System.Windows.Forms.Padding(3);
+            this._tabPages.Size = new System.Drawing.Size(161, 635);
+            this._tabPages.TabIndex = 0;
+            this._tabPages.Text = "Pages";
+            this._tabPages.UseVisualStyleBackColor = true;
+            // 
             // _thumbnailView
             // 
-            this._thumbnailView.BackColor = System.Drawing.Color.Gray;
+            this._thumbnailView.BackColor = System.Drawing.Color.Gainsboro;
             this._thumbnailView.CaptionLines = 0;
             this._thumbnailView.DisplayText = Atalasoft.Imaging.WinControls.ThumbViewAttribute.None;
             this._thumbnailView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -270,7 +338,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
             this._thumbnailView.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this._thumbnailView.SelectionRectangleLineColor = System.Drawing.Color.Black;
-            this._thumbnailView.Size = new System.Drawing.Size(155, 654);
+            this._thumbnailView.Size = new System.Drawing.Size(155, 629);
             this._thumbnailView.TabIndex = 2;
             this._thumbnailView.Text = "thumbnailView1";
             this._thumbnailView.ThumbnailBackground = null;
@@ -279,73 +347,80 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.SelectedIndexChanged += new System.EventHandler(this.ThumbnailViewOnSelectedIndexChanged);
             this._thumbnailView.ThumbnailCreated += new Atalasoft.Imaging.WinControls.ThumbnailEventHandler(this.ThumbnailViewOnThumbnailLoad);
             // 
-            // _progressBar
-            // 
-            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._progressBar.Location = new System.Drawing.Point(646, 688);
-            this._progressBar.Name = "_progressBar";
-            this._progressBar.Size = new System.Drawing.Size(300, 20);
-            this._progressBar.TabIndex = 3;
-            // 
-            // _tabControl
-            // 
-            this._tabControl.Controls.Add(this._tabPages);
-            this._tabControl.Controls.Add(this._tabBookmarks);
-            this._tabControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this._tabControl.Location = new System.Drawing.Point(0, 0);
-            this._tabControl.Name = "_tabControl";
-            this._tabControl.SelectedIndex = 0;
-            this._tabControl.Size = new System.Drawing.Size(169, 686);
-            this._tabControl.TabIndex = 4;
-            // 
-            // _tabPages
-            // 
-            this._tabPages.Controls.Add(this._thumbnailView);
-            this._tabPages.Location = new System.Drawing.Point(4, 22);
-            this._tabPages.Name = "_tabPages";
-            this._tabPages.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPages.Size = new System.Drawing.Size(161, 660);
-            this._tabPages.TabIndex = 0;
-            this._tabPages.Text = "Pages";
-            this._tabPages.UseVisualStyleBackColor = true;
-            // 
             // _tabBookmarks
             // 
             this._tabBookmarks.Controls.Add(this._treeBookmarks);
             this._tabBookmarks.Location = new System.Drawing.Point(4, 22);
             this._tabBookmarks.Name = "_tabBookmarks";
             this._tabBookmarks.Padding = new System.Windows.Forms.Padding(3);
-            this._tabBookmarks.Size = new System.Drawing.Size(161, 660);
+            this._tabBookmarks.Size = new System.Drawing.Size(161, 635);
             this._tabBookmarks.TabIndex = 1;
             this._tabBookmarks.Text = "Bookmarks";
             this._tabBookmarks.UseVisualStyleBackColor = true;
             // 
             // _treeBookmarks
             // 
-            this._treeBookmarks.BackColor = System.Drawing.Color.Gray;
+            this._treeBookmarks.BackColor = System.Drawing.Color.Gainsboro;
+            this._treeBookmarks.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._treeBookmarks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._treeBookmarks.ForeColor = System.Drawing.Color.White;
+            this._treeBookmarks.ForeColor = System.Drawing.Color.Black;
             this._treeBookmarks.Location = new System.Drawing.Point(3, 3);
             this._treeBookmarks.Name = "_treeBookmarks";
-            this._treeBookmarks.Size = new System.Drawing.Size(155, 654);
+            this._treeBookmarks.Size = new System.Drawing.Size(155, 629);
             this._treeBookmarks.TabIndex = 0;
             this._treeBookmarks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeBookmarksOnAfterSelect);
             // 
-            // _splitter
+            // toolStrip1
             // 
-            this._splitter.Location = new System.Drawing.Point(169, 0);
-            this._splitter.Name = "_splitter";
-            this._splitter.Size = new System.Drawing.Size(6, 686);
-            this._splitter.TabIndex = 5;
-            this._splitter.TabStop = false;
+            this._toolStripMenu.Dock = System.Windows.Forms.DockStyle.None;
+            this._toolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._openButton,
+            this._findButton,
+            this._printButton});
+            this._toolStripMenu.Location = new System.Drawing.Point(3, 0);
+            this._toolStripMenu.Name = "_toolStripMenu";
+            this._toolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._toolStripMenu.Size = new System.Drawing.Size(81, 25);
+            this._toolStripMenu.TabIndex = 0;
+            // 
+            // _openButton
+            // 
+            this._openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._openButton.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
+            this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._openButton.Name = "_openButton";
+            this._openButton.Size = new System.Drawing.Size(23, 22);
+            this._openButton.Text = "toolStripButton1";
+            this._openButton.ToolTipText = "Open File";
+            this._openButton.Click += new System.EventHandler(this.MenuOpenOnClick);
+            // 
+            // _findButton
+            // 
+            this._findButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._findButton.Image = ((System.Drawing.Image)(resources.GetObject("_findButton.Image")));
+            this._findButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._findButton.Name = "_findButton";
+            this._findButton.Size = new System.Drawing.Size(23, 22);
+            this._findButton.Text = "toolStripButton1";
+            this._findButton.ToolTipText = "Find";
+            this._findButton.Click += new System.EventHandler(this.MenuItemFindOnClick);
+            // 
+            // _printButton
+            // 
+            this._printButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._printButton.Image = ((System.Drawing.Image)(resources.GetObject("_printButton.Image")));
+            this._printButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._printButton.Name = "_printButton";
+            this._printButton.Size = new System.Drawing.Size(23, 22);
+            this._printButton.Text = "toolStripButton1";
+            this._printButton.ToolTipText = "Print document";
+            this._printButton.Click += new System.EventHandler(this.MenuPrintOnClick);
             // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(960, 708);
-            this.Controls.Add(this._workspaceViewer);
-            this.Controls.Add(this._splitter);
-            this.Controls.Add(this._tabControl);
+            this.Controls.Add(this._toolStripContainer);
             this.Controls.Add(this._progressBar);
             this.Controls.Add(this._statusBar);
             this.Menu = this._mainMenu;
@@ -353,23 +428,23 @@ namespace Atalasoft.Demo.PdfViewer
             this.Text = "Atalasoft PDF Viewer Demo";
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).EndInit();
+            this._toolStripContainer.ContentPanel.ResumeLayout(false);
+            this._toolStripContainer.TopToolStripPanel.ResumeLayout(false);
+            this._toolStripContainer.TopToolStripPanel.PerformLayout();
+            this._toolStripContainer.ResumeLayout(false);
+            this._toolStripContainer.PerformLayout();
             this._tabControl.ResumeLayout(false);
             this._tabPages.ResumeLayout(false);
             this._tabBookmarks.ResumeLayout(false);
+            this._toolStripMenu.ResumeLayout(false);
+            this._toolStripMenu.PerformLayout();
             this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private Atalasoft.Annotate.UI.AnnotateViewer _workspaceViewer;
-		private Atalasoft.Imaging.WinControls.ThumbnailView _thumbnailView;
-		private System.Windows.Forms.Splitter _splitter;
-		private System.Windows.Forms.TabPage _tabPages;
-		private System.Windows.Forms.TabPage _tabBookmarks;
-		private System.Windows.Forms.TreeView _treeBookmarks;
-		private System.Windows.Forms.TabControl _tabControl;
-		private System.Windows.Forms.ToolTip _toolTip;
+        private System.Windows.Forms.ToolTip _toolTip;
 		private System.Windows.Forms.ProgressBar _progressBar;
 		private System.Windows.Forms.StatusBarPanel _statusProgress;
 		private System.Windows.Forms.StatusBarPanel _statusBarPanel;
@@ -393,6 +468,18 @@ namespace Atalasoft.Demo.PdfViewer
 		private System.Windows.Forms.MainMenu _mainMenu;
         private System.Windows.Forms.MenuItem _menuOptions;
         private System.Windows.Forms.MenuItem _menuPdfDecoderSettings;
+        private System.Windows.Forms.ToolStripContainer _toolStripContainer;
+        private Annotate.UI.AnnotateViewer _workspaceViewer;
+        private System.Windows.Forms.Splitter _splitter;
+        private System.Windows.Forms.TabControl _tabControl;
+        private System.Windows.Forms.TabPage _tabPages;
+        private Imaging.WinControls.ThumbnailView _thumbnailView;
+        private System.Windows.Forms.TabPage _tabBookmarks;
+        private System.Windows.Forms.TreeView _treeBookmarks;
+        private System.Windows.Forms.ToolStrip _toolStripMenu;
+        private System.Windows.Forms.ToolStripButton _openButton;
+        private System.Windows.Forms.ToolStripButton _findButton;
+        private System.Windows.Forms.ToolStripButton _printButton;
 	}
 }
 
