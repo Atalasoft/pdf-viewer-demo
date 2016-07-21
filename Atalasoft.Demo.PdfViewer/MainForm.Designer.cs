@@ -355,10 +355,11 @@ namespace Atalasoft.Demo.PdfViewer
             // _thumbnailView
             // 
             this._thumbnailView.BackColor = System.Drawing.Color.Gainsboro;
-            this._thumbnailView.CaptionLines = 0;
+            this._thumbnailView.CaptionLines = 1;
+            this._thumbnailView.CaptionSpacing = 2;
             this._thumbnailView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._thumbnailView.DragSelectionColor = System.Drawing.Color.Red;
-            this._thumbnailView.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._thumbnailView.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this._thumbnailView.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this._thumbnailView.HighlightTextColor = System.Drawing.SystemColors.HighlightText;
             this._thumbnailView.LoadErrorMessage = "";
@@ -366,6 +367,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.Location = new System.Drawing.Point(3, 23);
             this._thumbnailView.Margins = new Atalasoft.Imaging.WinControls.Margin(4, 4, 4, 4);
             this._thumbnailView.Name = "_thumbnailView";
+            this._thumbnailView.SelectedItemStyle = Atalasoft.Imaging.WinControls.SelectedItemRenderStyle.Full;
             this._thumbnailView.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
             this._thumbnailView.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this._thumbnailView.SelectionRectangleLineColor = System.Drawing.Color.Black;

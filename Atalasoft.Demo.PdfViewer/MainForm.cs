@@ -99,7 +99,7 @@ namespace Atalasoft.Demo.PdfViewer
             var thumbs = new Thumbnail[frameCount];
             for (var i = 0; i < frameCount; i++)
             {
-                thumbs[i] = new Thumbnail(file, i, "", "");
+                thumbs[i] = new Thumbnail(file, i, (i + 1).ToString(), "");
             }
             _thumbnailView.Items.AddRange(thumbs);
 
