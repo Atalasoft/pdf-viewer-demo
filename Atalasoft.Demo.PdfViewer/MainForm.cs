@@ -66,6 +66,12 @@ namespace Atalasoft.Demo.PdfViewer
 
             _workspaceViewer.ImageBorderPen = new AtalaPen(Color.Black, 1);
             _workspaceViewer.Annotations.Layers.Add(new LayerAnnotation());
+
+            _tabControl.ImageList = new ImageList { ImageSize = new Size(32, 32) };
+            _tabControl.ImageList.Images.AddRange(new Image[] { Resources.PagesTabImage, Resources.BookmarkTabImage });
+
+            _treeBookmarks.ImageList = new ImageList();
+            _treeBookmarks.ImageList.Images.Add(Resources.BookmarkGray);
         }
 
         #endregion
@@ -456,7 +462,8 @@ namespace Atalasoft.Demo.PdfViewer
             var node = new TreeNode(bookMark.Text)
             {
                 ForeColor = bookMark.Color,
-                Tag = bookMark
+                Tag = bookMark,
+                ImageIndex = 0
             };
 
             if (parent == null)

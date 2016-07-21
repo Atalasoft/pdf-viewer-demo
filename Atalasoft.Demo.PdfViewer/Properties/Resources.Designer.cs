@@ -71,11 +71,41 @@ namespace Atalasoft.Demo.PdfViewer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BookmarkGray {
+            get {
+                object obj = ResourceManager.GetObject("BookmarkGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BookmarkTabImage {
+            get {
+                object obj = ResourceManager.GetObject("BookmarkTabImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This PDF file does not contain text data..
         /// </summary>
         internal static string NoTextDataMessage {
             get {
                 return ResourceManager.GetString("NoTextDataMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PagesTabImage {
+            get {
+                object obj = ResourceManager.GetObject("PagesTabImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
