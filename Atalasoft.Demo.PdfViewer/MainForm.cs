@@ -69,7 +69,7 @@ namespace Atalasoft.Demo.PdfViewer
         }
 
         #endregion
-        
+
         #region Event handlers
 
         #region Menu event handlers
@@ -81,7 +81,7 @@ namespace Atalasoft.Demo.PdfViewer
 
             var file = _openFileDialog.FileName;
             var frameCount = RegisteredDecoders.GetImageInfo(file, 0).FrameCount;
-            
+
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
 
@@ -126,7 +126,8 @@ namespace Atalasoft.Demo.PdfViewer
 
         private void MenuExtractImagesOnClick(object sender, EventArgs e)
         {
-            if (_openFileDialog.ShowDialog(this) != DialogResult.OK) return;
+            if (_openFileDialog.ShowDialog(this) != DialogResult.OK)
+                return;
             _workspaceViewer.Images.Clear();
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
@@ -283,7 +284,6 @@ namespace Atalasoft.Demo.PdfViewer
 
         #region Printing
 
-
         private void MenuPrintOnClick(object sender, EventArgs e)
         {
             if (_openFileDialog.FileName == "") // make sure an image is loaded
@@ -297,7 +297,10 @@ namespace Atalasoft.Demo.PdfViewer
                 var printDoc = new PrintDocument();
                 printDoc.PrintPage += PrintDocOnPrintPage;
                 _current = 0;
-                printDoc.Print();
+
+                var pdi = new PrintDialog { Document = printDoc };
+                if (pdi.ShowDialog() == DialogResult.OK)
+                    printDoc.Print();
             }
         }
 
@@ -349,7 +352,7 @@ namespace Atalasoft.Demo.PdfViewer
                 MessageBox.Show(Resources.TextNotFoundMessage, Resources.TitleSearchMessage, MessageBoxButtons.OK);
             }
         }
-        
+
         private void MenuPdfDecoderSettingsOnClick(object sender, EventArgs e)
         {
             //set decoder properties
@@ -429,7 +432,7 @@ namespace Atalasoft.Demo.PdfViewer
             // Units are 1/72”
 
             var y = gotoView.Destination.Top.HasValue
-                ? Convert.ToInt32(gotoView.Destination.Top.Value/72.0*_workspaceViewer.Image.Resolution.Y)
+                ? Convert.ToInt32(gotoView.Destination.Top.Value / 72.0 * _workspaceViewer.Image.Resolution.Y)
                 : 0;
             y = _workspaceViewer.Image.Height - y;
             _workspaceViewer.ScrollPosition = new Point(0, -y);
@@ -440,7 +443,7 @@ namespace Atalasoft.Demo.PdfViewer
             _treeBookmarks.Nodes.Clear();
 
             var doc = new PdfDocument(fileName);
-            if (doc.BookmarkTree == null) 
+            if (doc.BookmarkTree == null)
                 return;
             foreach (var bookmark in doc.BookmarkTree.Bookmarks)
             {
