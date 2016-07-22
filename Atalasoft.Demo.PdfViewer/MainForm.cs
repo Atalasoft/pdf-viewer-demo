@@ -66,10 +66,16 @@ namespace Atalasoft.Demo.PdfViewer
 
             _workspaceViewer.ImageBorderPen = new AtalaPen(Color.Black, 1);
             _workspaceViewer.Annotations.Layers.Add(new LayerAnnotation());
+
+            _tabControl.ImageList = new ImageList { ImageSize = new Size(32, 32) };
+            _tabControl.ImageList.Images.AddRange(new Image[] { Resources.PagesTabImage, Resources.BookmarkTabImage });
+
+            _treeBookmarks.ImageList = new ImageList();
+            _treeBookmarks.ImageList.Images.Add(Resources.BookmarkGray);
         }
 
         #endregion
-        
+
         #region Event handlers
 
         #region Menu event handlers
@@ -82,12 +88,6 @@ namespace Atalasoft.Demo.PdfViewer
             var file = _openFileDialog.FileName;
             var frameCount = RegisteredDecoders.GetImageInfo(file, 0).FrameCount;
 
-            //set decoder properties
-            using (Form frm = new Parameters("PDF Decoder Properties", _pdfDecoder))
-            {
-                if (frm.ShowDialog(this) != DialogResult.OK)
-                    return;
-            }
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
 
@@ -99,7 +99,7 @@ namespace Atalasoft.Demo.PdfViewer
             var thumbs = new Thumbnail[frameCount];
             for (var i = 0; i < frameCount; i++)
             {
-                thumbs[i] = new Thumbnail(file, i, "", "");
+                thumbs[i] = new Thumbnail(file, i, (i + 1).ToString(), "");
             }
             _thumbnailView.Items.AddRange(thumbs);
 
@@ -132,7 +132,8 @@ namespace Atalasoft.Demo.PdfViewer
 
         private void MenuExtractImagesOnClick(object sender, EventArgs e)
         {
-            if (_openFileDialog.ShowDialog(this) != DialogResult.OK) return;
+            if (_openFileDialog.ShowDialog(this) != DialogResult.OK)
+                return;
             _workspaceViewer.Images.Clear();
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
@@ -289,7 +290,6 @@ namespace Atalasoft.Demo.PdfViewer
 
         #region Printing
 
-
         private void MenuPrintOnClick(object sender, EventArgs e)
         {
             if (_openFileDialog.FileName == "") // make sure an image is loaded
@@ -303,7 +303,10 @@ namespace Atalasoft.Demo.PdfViewer
                 var printDoc = new PrintDocument();
                 printDoc.PrintPage += PrintDocOnPrintPage;
                 _current = 0;
-                printDoc.Print();
+
+                var pdi = new PrintDialog { Document = printDoc };
+                if (pdi.ShowDialog() == DialogResult.OK)
+                    printDoc.Print();
             }
         }
 
@@ -353,6 +356,15 @@ namespace Atalasoft.Demo.PdfViewer
             if (!found)
             {
                 MessageBox.Show(Resources.TextNotFoundMessage, Resources.TitleSearchMessage, MessageBoxButtons.OK);
+            }
+        }
+
+        private void MenuPdfDecoderSettingsOnClick(object sender, EventArgs e)
+        {
+            //set decoder properties
+            using (Form frm = new Parameters("PDF Decoder Properties", _pdfDecoder))
+            {
+                frm.ShowDialog(this);
             }
         }
 
@@ -426,7 +438,7 @@ namespace Atalasoft.Demo.PdfViewer
             // Units are 1/72”
 
             var y = gotoView.Destination.Top.HasValue
-                ? Convert.ToInt32(gotoView.Destination.Top.Value/72.0*_workspaceViewer.Image.Resolution.Y)
+                ? Convert.ToInt32(gotoView.Destination.Top.Value / 72.0 * _workspaceViewer.Image.Resolution.Y)
                 : 0;
             y = _workspaceViewer.Image.Height - y;
             _workspaceViewer.ScrollPosition = new Point(0, -y);
@@ -437,7 +449,7 @@ namespace Atalasoft.Demo.PdfViewer
             _treeBookmarks.Nodes.Clear();
 
             var doc = new PdfDocument(fileName);
-            if (doc.BookmarkTree == null) 
+            if (doc.BookmarkTree == null)
                 return;
             foreach (var bookmark in doc.BookmarkTree.Bookmarks)
             {
@@ -450,7 +462,8 @@ namespace Atalasoft.Demo.PdfViewer
             var node = new TreeNode(bookMark.Text)
             {
                 ForeColor = bookMark.Color,
-                Tag = bookMark
+                Tag = bookMark,
+                ImageIndex = 0
             };
 
             if (parent == null)
