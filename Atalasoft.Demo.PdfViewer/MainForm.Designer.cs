@@ -354,10 +354,12 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             // _thumbnailView
             // 
+            this._thumbnailView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._thumbnailView.BackColor = System.Drawing.Color.Gainsboro;
             this._thumbnailView.CaptionLines = 1;
             this._thumbnailView.CaptionSpacing = 2;
-            this._thumbnailView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._thumbnailView.DragSelectionColor = System.Drawing.Color.Red;
             this._thumbnailView.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this._thumbnailView.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
@@ -407,9 +409,11 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             // _treeBookmarks
             // 
+            this._treeBookmarks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._treeBookmarks.BackColor = System.Drawing.Color.Gainsboro;
             this._treeBookmarks.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._treeBookmarks.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._treeBookmarks.ForeColor = System.Drawing.Color.Black;
             this._treeBookmarks.Location = new System.Drawing.Point(3, 23);
             this._treeBookmarks.Name = "_treeBookmarks";
