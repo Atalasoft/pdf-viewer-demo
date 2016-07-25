@@ -95,26 +95,27 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuView.Name = "_menuView";
             this._menuView.Size = new System.Drawing.Size(44, 20);
             this._menuView.Text = "View";
-            this._menuView.Click += new System.EventHandler(this.MenuViewOnClick);
             // 
             // _menuViewFullSize
             // 
+            this._menuViewFullSize.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewFullSize.Image")));
             this._menuViewFullSize.Name = "_menuViewFullSize";
-            this._menuViewFullSize.Size = new System.Drawing.Size(139, 22);
+            this._menuViewFullSize.Size = new System.Drawing.Size(152, 22);
             this._menuViewFullSize.Text = "Full Size";
             this._menuViewFullSize.Click += new System.EventHandler(this.MenuViewFullSizeOnClick);
             // 
             // _menuViewFitWidth
             // 
             this._menuViewFitWidth.Name = "_menuViewFitWidth";
-            this._menuViewFitWidth.Size = new System.Drawing.Size(139, 22);
+            this._menuViewFitWidth.Size = new System.Drawing.Size(152, 22);
             this._menuViewFitWidth.Text = "Fit To Width";
             this._menuViewFitWidth.Click += new System.EventHandler(this.MenuViewFitWidthOnClick);
             // 
             // _menuViewBestFit
             // 
+            this._menuViewBestFit.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewBestFit.Image")));
             this._menuViewBestFit.Name = "_menuViewBestFit";
-            this._menuViewBestFit.Size = new System.Drawing.Size(139, 22);
+            this._menuViewBestFit.Size = new System.Drawing.Size(152, 22);
             this._menuViewBestFit.Text = "Best Fit";
             this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewBestFitOnClick);
             // 

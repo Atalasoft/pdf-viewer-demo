@@ -106,6 +106,8 @@ namespace Atalasoft.Demo.PdfViewer
             //open the first full size page
             _workspaceViewer.Open(file, 0);
 
+            UpdateZoomButtons();
+
             _extractedImages = false;
             _currentFile = file;
             _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
@@ -185,48 +187,19 @@ namespace Atalasoft.Demo.PdfViewer
             _workspaceViewer.Save(_saveFileDialog.FileName, encoder);
         }
 
-        private void MenuViewOnClick(object sender, EventArgs e)
-        {
-            switch (_workspaceViewer.AutoZoom)
-            {
-                case AutoZoomMode.FitToWidth:
-                    _menuViewFitWidth.Checked = true;
-                    _menuViewFullSize.Checked = false;
-                    _menuViewBestFit.Checked = false;
-                    break;
-                case AutoZoomMode.BestFit:
-                    _menuViewFitWidth.Checked = false;
-                    _menuViewFullSize.Checked = false;
-                    _menuViewBestFit.Checked = true;
-                    break;
-                case AutoZoomMode.None:
-                    break;
-                case AutoZoomMode.BestFitShrinkOnly:
-                    break;
-                case AutoZoomMode.FitToHeight:
-                    break;
-                default:
-                    _menuViewFitWidth.Checked = false;
-                    _menuViewFullSize.Checked = true;
-                    _menuViewBestFit.Checked = false;
-                    break;
-            }
-        }
-
         private void MenuViewFullSizeOnClick(object sender, EventArgs e)
         {
-            _workspaceViewer.AutoZoom = AutoZoomMode.None;
-            _workspaceViewer.Zoom = 1.0;
+            SetZoomMode(AutoZoomMode.None);
         }
 
         private void MenuViewFitWidthOnClick(object sender, EventArgs e)
         {
-            _workspaceViewer.AutoZoom = AutoZoomMode.FitToWidth;
+            SetZoomMode(AutoZoomMode.FitToWidth);
         }
 
         private void MenuViewBestFitOnClick(object sender, EventArgs e)
         {
-            _workspaceViewer.AutoZoom = AutoZoomMode.BestFit;
+            SetZoomMode(AutoZoomMode.BestFit);
         }
 
         private void MenuAboutOnClick(object sender, EventArgs e)
@@ -369,6 +342,37 @@ namespace Atalasoft.Demo.PdfViewer
         }
 
         #endregion
+
+        private void SetZoomMode(AutoZoomMode zoomMode)
+        {
+            _workspaceViewer.AutoZoom = zoomMode;
+            if(zoomMode==AutoZoomMode.None)
+                _workspaceViewer.Zoom = 1.0;
+
+            UpdateZoomButtons();
+        }
+
+        private void UpdateZoomButtons()
+        {
+            switch (_workspaceViewer.AutoZoom)
+            {
+                case AutoZoomMode.FitToWidth:
+                    _menuViewFitWidth.Checked = true;
+                    _menuViewFullSize.Checked = false;
+                    _menuViewBestFit.Checked = false;
+                    break;
+                case AutoZoomMode.BestFit:
+                    _menuViewFitWidth.Checked = false;
+                    _menuViewFullSize.Checked = false;
+                    _menuViewBestFit.Checked = true;
+                    break;
+                default:
+                    _menuViewFitWidth.Checked = false;
+                    _menuViewFullSize.Checked = true;
+                    _menuViewBestFit.Checked = false;
+                    break;
+            }
+        }
 
         private int GetCurrentPage()
         {
