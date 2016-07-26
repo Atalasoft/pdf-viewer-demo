@@ -38,6 +38,9 @@ namespace Atalasoft.Demo.PdfViewer
         // members to control text search
         private FindDialog _findDialog;
         private PdfDocumentSearch _pdfDocSearch;
+        
+        private bool _isUpperLimit;
+        private bool _isLowerLimit;
 
         #endregion
 
@@ -66,6 +69,7 @@ namespace Atalasoft.Demo.PdfViewer
 
             _workspaceViewer.ImageBorderPen = new AtalaPen(Color.Black, 1);
             _workspaceViewer.Annotations.Layers.Add(new LayerAnnotation());
+            _workspaceViewer.MouseWheel += WorkspaceViewerOnMouseWheel;
 
             _tabControl.ImageList = new ImageList { ImageSize = new Size(32, 32) };
             _tabControl.ImageList.Images.AddRange(new Image[] { Resources.PagesTabImage, Resources.BookmarkTabImage });
@@ -225,21 +229,24 @@ namespace Atalasoft.Demo.PdfViewer
             _findDialog.Show();
         }
 
+        private void MenuPdfDecoderSettingsOnClick(object sender, EventArgs e)
+        {
+            //set decoder properties
+            using (Form frm = new Parameters("PDF Decoder Properties", _pdfDecoder))
+            {
+                frm.ShowDialog(this);
+            }
+        }
+
         #endregion
 
         private void ThumbnailViewOnSelectedIndexChanged(object sender, EventArgs e)
         {
             if (_thumbnailView.SelectedItems.Count <= 0)
                 return;
-            _workspaceViewer.ScrollPosition = new Point(0, 0);
 
-            if (_extractedImages)
-                _workspaceViewer.Image = _workspaceViewer.Images[_thumbnailView.SelectedIndices[0]];
-            else
-            {
-                _workspaceViewer.Open(_openFileDialog.FileName, _thumbnailView.SelectedIndices[0]);
-                _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
-            }
+            _workspaceViewer.ScrollPosition = new Point(0, 0);
+            ViewPage(_thumbnailView.SelectedIndices[0]);
         }
 
         private void WorkspaceViewerOnChangedImage(object sender, ImageEventArgs e)
@@ -251,6 +258,23 @@ namespace Atalasoft.Demo.PdfViewer
         private void WorkspaceViewerOnProcessError(object sender, ExceptionEventArgs e)
         {
             MessageBox.Show(this, e.Exception.ToString());
+        }
+        
+        private void WorkspaceViewerOnMouseWheel(object sender, MouseEventArgs e)
+        {
+            var position = _workspaceViewer.ScrollPosition;
+            if (e.Delta > 0)
+            {
+                if (position.Y != 0)
+                    return;
+                ScrollToPreviousPage(position);
+            }
+            else
+            {
+                if (position.Y > GetLowerScrollPosition() + SystemInformation.HorizontalScrollBarHeight)
+                    return;
+                ScrollToNextPage(position);
+            }
         }
 
         private void ThumbnailViewOnThumbnailLoad(object sender, ThumbnailEventArgs e)
@@ -332,21 +356,14 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
-        private void MenuPdfDecoderSettingsOnClick(object sender, EventArgs e)
-        {
-            //set decoder properties
-            using (Form frm = new Parameters("PDF Decoder Properties", _pdfDecoder))
-            {
-                frm.ShowDialog(this);
-            }
-        }
-
         #endregion
+
+        #region Private methods
 
         private void SetZoomMode(AutoZoomMode zoomMode)
         {
             _workspaceViewer.AutoZoom = zoomMode;
-            if(zoomMode==AutoZoomMode.None)
+            if (zoomMode == AutoZoomMode.None)
                 _workspaceViewer.Zoom = 1.0;
 
             UpdateZoomButtons();
@@ -408,6 +425,53 @@ namespace Atalasoft.Demo.PdfViewer
             else
                 MessageBox.Show(Resources.ActivationToolkitNotFoundMessage, Resources.TitleActivationToolkitNotFoundMessage);
         }
+
+        private void ScrollToNextPage(Point position)
+        {
+            if (GetCurrentPage() == _thumbnailView.Items.Count - 1)
+                return;
+            if (!_isLowerLimit)
+            {
+                _isLowerLimit = true;
+                return;
+            }
+            ViewPage(GetCurrentPage() + 1);
+            _workspaceViewer.ScrollPosition = new Point(position.X, 0);
+            _isLowerLimit = false;
+        }
+
+        private void ScrollToPreviousPage(Point position)
+        {
+            if (GetCurrentPage() == 0)
+                return;
+            if (!_isUpperLimit)
+            {
+                _isUpperLimit = true;
+                return;
+            }
+            ViewPage(GetCurrentPage() - 1);
+            _workspaceViewer.ScrollPosition = new Point(position.X, GetLowerScrollPosition());
+            _isUpperLimit = false;
+        }
+
+        private int GetLowerScrollPosition()
+        {
+            return -_workspaceViewer.ScrollSize.Height + _workspaceViewer.Height - SystemInformation.HorizontalScrollBarHeight;
+        }
+
+        private void ViewPage(int number)
+        {
+            if (_extractedImages)
+                _workspaceViewer.Image = _workspaceViewer.Images[number];
+            else
+            {
+                _workspaceViewer.Open(_openFileDialog.FileName, number);
+                _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
+            }
+            _thumbnailView.Items[number].Selected = true;
+        } 
+
+        #endregion
 
         #region Bookmark Code
 
