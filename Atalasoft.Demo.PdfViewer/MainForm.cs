@@ -38,7 +38,7 @@ namespace Atalasoft.Demo.PdfViewer
         // members to control text search
         private FindDialog _findDialog;
         private PdfDocumentSearch _pdfDocSearch;
-        
+
         private bool _isUpperLimit;
         private bool _isLowerLimit;
 
@@ -110,7 +110,7 @@ namespace Atalasoft.Demo.PdfViewer
             //open the first full size page
             _workspaceViewer.Open(file, 0);
 
-            UpdateZoomButtons();
+            ResetZoomButtons();
 
             _extractedImages = false;
             _currentFile = file;
@@ -194,16 +194,20 @@ namespace Atalasoft.Demo.PdfViewer
         private void MenuViewFullSizeOnClick(object sender, EventArgs e)
         {
             SetZoomMode(AutoZoomMode.None);
+            _workspaceViewer.Zoom = 1;
+            _menuViewFullSize.Checked = true;
         }
 
         private void MenuViewFitWidthOnClick(object sender, EventArgs e)
         {
             SetZoomMode(AutoZoomMode.FitToWidth);
+            _menuViewFitWidth.Checked = true;
         }
 
         private void MenuViewBestFitOnClick(object sender, EventArgs e)
         {
             SetZoomMode(AutoZoomMode.BestFit);
+            _menuViewBestFit.Checked = true;
         }
 
         private void MenuAboutOnClick(object sender, EventArgs e)
@@ -259,7 +263,7 @@ namespace Atalasoft.Demo.PdfViewer
         {
             MessageBox.Show(this, e.Exception.ToString());
         }
-        
+
         private void WorkspaceViewerOnMouseWheel(object sender, MouseEventArgs e)
         {
             var position = _workspaceViewer.ScrollPosition;
@@ -356,6 +360,64 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
+        #region Mouse tools event
+
+        private void PanButtonOnCheckedChanged(object sender, EventArgs e)
+        {
+            if (_panButton.Checked)
+            {
+                ResetMouseToolsButtons(_panButton);
+                _workspaceViewer.MouseTool = MouseToolType.Pan;
+            }
+            else
+            {
+                _workspaceViewer.MouseTool = MouseToolType.None;
+            }
+        }
+
+        private void MagnifierButtonOnCheckedChanged(object sender, EventArgs e)
+        {
+            if (_magnifierButton.Checked)
+            {
+                ResetMouseToolsButtons(_magnifierButton);
+                _workspaceViewer.MouseTool = MouseToolType.Magnifier;
+            }
+            else
+            {
+                _workspaceViewer.MouseTool = MouseToolType.None;
+            }
+        }
+
+        private void ZoomButtonOnCheckedChanged(object sender, EventArgs e)
+        {
+            if (_zoomButton.Checked)
+            {
+                ResetMouseToolsButtons(_zoomButton);
+                _workspaceViewer.MouseTool = MouseToolType.Zoom;
+                SetZoomMode(AutoZoomMode.None);
+            }
+            else
+            {
+                _workspaceViewer.MouseTool = MouseToolType.None;
+            }
+        }
+
+        private void ZoomAreaButtonOnCheckedChanged(object sender, EventArgs e)
+        {
+            if (_zoomAreaButton.Checked)
+            {
+                ResetMouseToolsButtons(_zoomAreaButton);
+                _workspaceViewer.MouseTool = MouseToolType.ZoomArea;
+                SetZoomMode(AutoZoomMode.None);
+            }
+            else
+            {
+                _workspaceViewer.MouseTool = MouseToolType.None;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Private methods
@@ -363,31 +425,15 @@ namespace Atalasoft.Demo.PdfViewer
         private void SetZoomMode(AutoZoomMode zoomMode)
         {
             _workspaceViewer.AutoZoom = zoomMode;
-            if (zoomMode == AutoZoomMode.None)
-                _workspaceViewer.Zoom = 1.0;
-
-            UpdateZoomButtons();
+            ResetZoomButtons();
         }
 
-        private void UpdateZoomButtons()
+        private void ResetZoomButtons(ToolStripMenuItem exceptButton = null)
         {
-            switch (_workspaceViewer.AutoZoom)
+            foreach (ToolStripMenuItem item in _menuView.DropDownItems)
             {
-                case AutoZoomMode.FitToWidth:
-                    _menuViewFitWidth.Checked = true;
-                    _menuViewFullSize.Checked = false;
-                    _menuViewBestFit.Checked = false;
-                    break;
-                case AutoZoomMode.BestFit:
-                    _menuViewFitWidth.Checked = false;
-                    _menuViewFullSize.Checked = false;
-                    _menuViewBestFit.Checked = true;
-                    break;
-                default:
-                    _menuViewFitWidth.Checked = false;
-                    _menuViewFullSize.Checked = true;
-                    _menuViewBestFit.Checked = false;
-                    break;
+                if (item != exceptButton)
+                    item.Checked = false;
             }
         }
 
@@ -469,7 +515,16 @@ namespace Atalasoft.Demo.PdfViewer
                 _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
             }
             _thumbnailView.Items[number].Selected = true;
-        } 
+        }
+
+        private void ResetMouseToolsButtons(ToolStripButton exceptButton = null)
+        {
+            foreach (ToolStripButton item in _mouseToolStripMenu.Items)
+            {
+                if (item != exceptButton)
+                    item.Checked = false;
+            }
+        }
 
         #endregion
 

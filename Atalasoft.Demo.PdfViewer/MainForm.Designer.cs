@@ -74,6 +74,11 @@ namespace Atalasoft.Demo.PdfViewer
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._findButton = new System.Windows.Forms.ToolStripButton();
             this._printButton = new System.Windows.Forms.ToolStripButton();
+            this._mouseToolStripMenu = new System.Windows.Forms.ToolStrip();
+            this._panButton = new System.Windows.Forms.ToolStripButton();
+            this._magnifierButton = new System.Windows.Forms.ToolStripButton();
+            this._zoomButton = new System.Windows.Forms.ToolStripButton();
+            this._zoomAreaButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).BeginInit();
             this._toolStripContainer.ContentPanel.SuspendLayout();
@@ -84,6 +89,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabBookmarks.SuspendLayout();
             this._mainMenu.SuspendLayout();
             this._toolStripMenu.SuspendLayout();
+            this._mouseToolStripMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // _menuView
@@ -100,14 +106,14 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._menuViewFullSize.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewFullSize.Image")));
             this._menuViewFullSize.Name = "_menuViewFullSize";
-            this._menuViewFullSize.Size = new System.Drawing.Size(152, 22);
+            this._menuViewFullSize.Size = new System.Drawing.Size(139, 22);
             this._menuViewFullSize.Text = "Full Size";
             this._menuViewFullSize.Click += new System.EventHandler(this.MenuViewFullSizeOnClick);
             // 
             // _menuViewFitWidth
             // 
             this._menuViewFitWidth.Name = "_menuViewFitWidth";
-            this._menuViewFitWidth.Size = new System.Drawing.Size(152, 22);
+            this._menuViewFitWidth.Size = new System.Drawing.Size(139, 22);
             this._menuViewFitWidth.Text = "Fit To Width";
             this._menuViewFitWidth.Click += new System.EventHandler(this.MenuViewFitWidthOnClick);
             // 
@@ -115,7 +121,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._menuViewBestFit.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewBestFit.Image")));
             this._menuViewBestFit.Name = "_menuViewBestFit";
-            this._menuViewBestFit.Size = new System.Drawing.Size(152, 22);
+            this._menuViewBestFit.Size = new System.Drawing.Size(139, 22);
             this._menuViewBestFit.Text = "Best Fit";
             this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewBestFitOnClick);
             // 
@@ -276,6 +282,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mainMenu);
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._toolStripMenu);
+            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mouseToolStripMenu);
             // 
             // _workspaceViewer
             // 
@@ -374,7 +381,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
             this._thumbnailView.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this._thumbnailView.SelectionRectangleLineColor = System.Drawing.Color.Black;
-            this._thumbnailView.Size = new System.Drawing.Size(157, 589);
+            this._thumbnailView.Size = new System.Drawing.Size(157, 592);
             this._thumbnailView.TabIndex = 2;
             this._thumbnailView.Text = "thumbnailView1";
             this._thumbnailView.ThumbnailBackground = null;
@@ -485,6 +492,72 @@ namespace Atalasoft.Demo.PdfViewer
             this._printButton.ToolTipText = "Print document";
             this._printButton.Click += new System.EventHandler(this.MenuPrintOnClick);
             // 
+            // _mouseToolStripMenu
+            // 
+            this._mouseToolStripMenu.Dock = System.Windows.Forms.DockStyle.None;
+            this._mouseToolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._panButton,
+            this._magnifierButton,
+            this._zoomButton,
+            this._zoomAreaButton});
+            this._mouseToolStripMenu.Location = new System.Drawing.Point(123, 24);
+            this._mouseToolStripMenu.Name = "_mouseToolStripMenu";
+            this._mouseToolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._mouseToolStripMenu.Size = new System.Drawing.Size(156, 39);
+            this._mouseToolStripMenu.TabIndex = 2;
+            // 
+            // _panButton
+            // 
+            this._panButton.CheckOnClick = true;
+            this._panButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._panButton.Image = ((System.Drawing.Image)(resources.GetObject("_panButton.Image")));
+            this._panButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._panButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._panButton.Name = "_panButton";
+            this._panButton.Size = new System.Drawing.Size(36, 36);
+            this._panButton.Text = "toolStripButton1";
+            this._panButton.ToolTipText = "Pan";
+            this._panButton.CheckedChanged += new System.EventHandler(this.PanButtonOnCheckedChanged);
+            // 
+            // _magnifierButton
+            // 
+            this._magnifierButton.CheckOnClick = true;
+            this._magnifierButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._magnifierButton.Image = ((System.Drawing.Image)(resources.GetObject("_magnifierButton.Image")));
+            this._magnifierButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._magnifierButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._magnifierButton.Name = "_magnifierButton";
+            this._magnifierButton.Size = new System.Drawing.Size(36, 36);
+            this._magnifierButton.Text = "toolStripButton1";
+            this._magnifierButton.ToolTipText = "Magnifier";
+            this._magnifierButton.CheckedChanged += new System.EventHandler(this.MagnifierButtonOnCheckedChanged);
+            // 
+            // _zoomButton
+            // 
+            this._zoomButton.CheckOnClick = true;
+            this._zoomButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._zoomButton.Image = ((System.Drawing.Image)(resources.GetObject("_zoomButton.Image")));
+            this._zoomButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._zoomButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._zoomButton.Name = "_zoomButton";
+            this._zoomButton.Size = new System.Drawing.Size(36, 36);
+            this._zoomButton.Text = "toolStripButton1";
+            this._zoomButton.ToolTipText = "Zoom";
+            this._zoomButton.CheckedChanged += new System.EventHandler(this.ZoomButtonOnCheckedChanged);
+            // 
+            // _zoomAreaButton
+            // 
+            this._zoomAreaButton.CheckOnClick = true;
+            this._zoomAreaButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._zoomAreaButton.Image = ((System.Drawing.Image)(resources.GetObject("_zoomAreaButton.Image")));
+            this._zoomAreaButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._zoomAreaButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._zoomAreaButton.Name = "_zoomAreaButton";
+            this._zoomAreaButton.Size = new System.Drawing.Size(36, 36);
+            this._zoomAreaButton.Text = "toolStripButton1";
+            this._zoomAreaButton.ToolTipText = "Zoom Area";
+            this._zoomAreaButton.CheckedChanged += new System.EventHandler(this.ZoomAreaButtonOnCheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -511,6 +584,8 @@ namespace Atalasoft.Demo.PdfViewer
             this._mainMenu.PerformLayout();
             this._toolStripMenu.ResumeLayout(false);
             this._toolStripMenu.PerformLayout();
+            this._mouseToolStripMenu.ResumeLayout(false);
+            this._mouseToolStripMenu.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -555,6 +630,11 @@ namespace Atalasoft.Demo.PdfViewer
         private System.Windows.Forms.MenuStrip _mainMenu;
         private System.Windows.Forms.Label _pagesLabel;
         private System.Windows.Forms.Label _bookmarksLabel;
+        private System.Windows.Forms.ToolStrip _mouseToolStripMenu;
+        private System.Windows.Forms.ToolStripButton _panButton;
+        private System.Windows.Forms.ToolStripButton _magnifierButton;
+        private System.Windows.Forms.ToolStripButton _zoomButton;
+        private System.Windows.Forms.ToolStripButton _zoomAreaButton;
 	}
 }
 
