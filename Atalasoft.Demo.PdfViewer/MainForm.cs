@@ -191,23 +191,17 @@ namespace Atalasoft.Demo.PdfViewer
             _workspaceViewer.Save(_saveFileDialog.FileName, encoder);
         }
 
-        private void MenuViewFullSizeOnClick(object sender, EventArgs e)
+        private void MenuViewItemOnClick(object sender, EventArgs e)
         {
-            SetZoomMode(AutoZoomMode.None);
-            _workspaceViewer.Zoom = 1;
-            _menuViewFullSize.Checked = true;
-        }
+            var button = sender as ToolStripMenuItem;
 
-        private void MenuViewFitWidthOnClick(object sender, EventArgs e)
-        {
-            SetZoomMode(AutoZoomMode.FitToWidth);
-            _menuViewFitWidth.Checked = true;
-        }
-
-        private void MenuViewBestFitOnClick(object sender, EventArgs e)
-        {
-            SetZoomMode(AutoZoomMode.BestFit);
-            _menuViewBestFit.Checked = true;
+            if (button == null || button.Checked)
+                return;
+            var zoomMode = (AutoZoomMode) button.Tag;
+            SetZoomMode(zoomMode);
+            if (zoomMode == AutoZoomMode.None)
+                _workspaceViewer.Zoom = 1;
+            button.Checked = true;
         }
 
         private void MenuAboutOnClick(object sender, EventArgs e)
@@ -359,64 +353,28 @@ namespace Atalasoft.Demo.PdfViewer
                 MessageBox.Show(Resources.TextNotFoundMessage, Resources.TitleSearchMessage, MessageBoxButtons.OK);
             }
         }
-
-        #region Mouse tools event
-
-        private void PanButtonOnCheckedChanged(object sender, EventArgs e)
+        
+        private void MouseToolButtonsOnCheckedChanged(object sender, EventArgs e)
         {
-            if (_panButton.Checked)
+            var btn = sender as ToolStripButton;
+            if (btn == null)
+                return;
+
+            if (btn.Checked)
             {
-                ResetMouseToolsButtons(_panButton);
-                _workspaceViewer.MouseTool = MouseToolType.Pan;
+                var zoomMode = (MouseToolType)btn.Tag;
+                ResetMouseToolsButtons(btn);
+                _workspaceViewer.MouseTool = zoomMode;
+                if (zoomMode == MouseToolType.Zoom || zoomMode == MouseToolType.ZoomArea)
+                {
+                    SetZoomMode(AutoZoomMode.None);
+                }
             }
             else
             {
                 _workspaceViewer.MouseTool = MouseToolType.None;
             }
         }
-
-        private void MagnifierButtonOnCheckedChanged(object sender, EventArgs e)
-        {
-            if (_magnifierButton.Checked)
-            {
-                ResetMouseToolsButtons(_magnifierButton);
-                _workspaceViewer.MouseTool = MouseToolType.Magnifier;
-            }
-            else
-            {
-                _workspaceViewer.MouseTool = MouseToolType.None;
-            }
-        }
-
-        private void ZoomButtonOnCheckedChanged(object sender, EventArgs e)
-        {
-            if (_zoomButton.Checked)
-            {
-                ResetMouseToolsButtons(_zoomButton);
-                _workspaceViewer.MouseTool = MouseToolType.Zoom;
-                SetZoomMode(AutoZoomMode.None);
-            }
-            else
-            {
-                _workspaceViewer.MouseTool = MouseToolType.None;
-            }
-        }
-
-        private void ZoomAreaButtonOnCheckedChanged(object sender, EventArgs e)
-        {
-            if (_zoomAreaButton.Checked)
-            {
-                ResetMouseToolsButtons(_zoomAreaButton);
-                _workspaceViewer.MouseTool = MouseToolType.ZoomArea;
-                SetZoomMode(AutoZoomMode.None);
-            }
-            else
-            {
-                _workspaceViewer.MouseTool = MouseToolType.None;
-            }
-        }
-
-        #endregion
 
         #endregion
 
