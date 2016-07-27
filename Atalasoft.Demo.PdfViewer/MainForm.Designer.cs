@@ -79,6 +79,12 @@ namespace Atalasoft.Demo.PdfViewer
             this._magnifierButton = new System.Windows.Forms.ToolStripButton();
             this._zoomButton = new System.Windows.Forms.ToolStripButton();
             this._zoomAreaButton = new System.Windows.Forms.ToolStripButton();
+            this._navigationToolStrip = new System.Windows.Forms.ToolStrip();
+            this._previousPageButton = new System.Windows.Forms.ToolStripButton();
+            this._nextPageButton = new System.Windows.Forms.ToolStripButton();
+            this._toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this._currentPageBox = new System.Windows.Forms.ToolStripTextBox();
+            this._totalPageLabel = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).BeginInit();
             this._toolStripContainer.ContentPanel.SuspendLayout();
@@ -90,6 +96,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._mainMenu.SuspendLayout();
             this._toolStripMenu.SuspendLayout();
             this._mouseToolStripMenu.SuspendLayout();
+            this._navigationToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _menuView
@@ -286,6 +293,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mainMenu);
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._toolStripMenu);
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mouseToolStripMenu);
+            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._navigationToolStrip);
             // 
             // _workspaceViewer
             // 
@@ -565,6 +573,61 @@ namespace Atalasoft.Demo.PdfViewer
             this._zoomAreaButton.ToolTipText = "Zoom Area";
             this._zoomAreaButton.CheckedChanged += new System.EventHandler(this.MouseToolButtonsOnCheckedChanged);
             // 
+            // _navigationToolStrip
+            // 
+            this._navigationToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._navigationToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._previousPageButton,
+            this._nextPageButton,
+            this._toolStripSeparator,
+            this._currentPageBox,
+            this._totalPageLabel});
+            this._navigationToolStrip.Location = new System.Drawing.Point(279, 24);
+            this._navigationToolStrip.Name = "_navigationToolStrip";
+            this._navigationToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._navigationToolStrip.Size = new System.Drawing.Size(190, 39);
+            this._navigationToolStrip.TabIndex = 3;
+            // 
+            // _previousPageButton
+            // 
+            this._previousPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._previousPageButton.Image = ((System.Drawing.Image)(resources.GetObject("_previousPageButton.Image")));
+            this._previousPageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._previousPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._previousPageButton.Name = "_previousPageButton";
+            this._previousPageButton.Size = new System.Drawing.Size(36, 36);
+            this._previousPageButton.Text = "toolStripButton1";
+            this._previousPageButton.ToolTipText = "Previous Page";
+            this._previousPageButton.Click += new System.EventHandler(this.PreviousPageButtonOnClick);
+            // 
+            // _nextPageButton
+            // 
+            this._nextPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._nextPageButton.Image = ((System.Drawing.Image)(resources.GetObject("_nextPageButton.Image")));
+            this._nextPageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._nextPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._nextPageButton.Name = "_nextPageButton";
+            this._nextPageButton.Size = new System.Drawing.Size(36, 36);
+            this._nextPageButton.Text = "toolStripButton2";
+            this._nextPageButton.ToolTipText = "Next Page";
+            this._nextPageButton.Click += new System.EventHandler(this.NextPageButtonOnClick);
+            // 
+            // _toolStripSeparator
+            // 
+            this._toolStripSeparator.Name = "_toolStripSeparator";
+            this._toolStripSeparator.Size = new System.Drawing.Size(6, 39);
+            // 
+            // _currentPageBox
+            // 
+            this._currentPageBox.Name = "_currentPageBox";
+            this._currentPageBox.Size = new System.Drawing.Size(40, 39);
+            // 
+            // _totalPageLabel
+            // 
+            this._totalPageLabel.Name = "_totalPageLabel";
+            this._totalPageLabel.Size = new System.Drawing.Size(27, 36);
+            this._totalPageLabel.Text = "of 0";
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -593,6 +656,8 @@ namespace Atalasoft.Demo.PdfViewer
             this._toolStripMenu.PerformLayout();
             this._mouseToolStripMenu.ResumeLayout(false);
             this._mouseToolStripMenu.PerformLayout();
+            this._navigationToolStrip.ResumeLayout(false);
+            this._navigationToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -642,6 +707,12 @@ namespace Atalasoft.Demo.PdfViewer
         private System.Windows.Forms.ToolStripButton _magnifierButton;
         private System.Windows.Forms.ToolStripButton _zoomButton;
         private System.Windows.Forms.ToolStripButton _zoomAreaButton;
+        private System.Windows.Forms.ToolStrip _navigationToolStrip;
+        private System.Windows.Forms.ToolStripButton _previousPageButton;
+        private System.Windows.Forms.ToolStripButton _nextPageButton;
+        private System.Windows.Forms.ToolStripSeparator _toolStripSeparator;
+        private System.Windows.Forms.ToolStripTextBox _currentPageBox;
+        private System.Windows.Forms.ToolStripLabel _totalPageLabel;
 	}
 }
 

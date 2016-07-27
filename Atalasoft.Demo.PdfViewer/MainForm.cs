@@ -42,6 +42,8 @@ namespace Atalasoft.Demo.PdfViewer
         private bool _isUpperLimit;
         private bool _isLowerLimit;
 
+        private int _currentPage;
+
         #endregion
 
         #region Constructor
@@ -80,6 +82,20 @@ namespace Atalasoft.Demo.PdfViewer
 
         #endregion
 
+        #region Properties
+
+        private int CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                _currentPageBox.Text = (_currentPage + 1).ToString();
+            }
+        }
+
+        #endregion
+
         #region Event handlers
 
         #region Menu event handlers
@@ -92,6 +108,7 @@ namespace Atalasoft.Demo.PdfViewer
             var file = _openFileDialog.FileName;
             var frameCount = RegisteredDecoders.GetImageInfo(file, 0).FrameCount;
 
+            _totalPageLabel.Text = @"of " + frameCount;
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
 
@@ -108,7 +125,7 @@ namespace Atalasoft.Demo.PdfViewer
             _thumbnailView.Items.AddRange(thumbs);
 
             //open the first full size page
-            _workspaceViewer.Open(file, 0);
+            ViewPage(0);
 
             ResetZoomButtons();
 
@@ -197,7 +214,7 @@ namespace Atalasoft.Demo.PdfViewer
 
             if (button == null || button.Checked)
                 return;
-            var zoomMode = (AutoZoomMode) button.Tag;
+            var zoomMode = (AutoZoomMode)button.Tag;
             SetZoomMode(zoomMode);
             if (zoomMode == AutoZoomMode.None)
                 _workspaceViewer.Zoom = 1;
@@ -220,7 +237,7 @@ namespace Atalasoft.Demo.PdfViewer
         {
             if (_findDialog != null || _currentFile == null)
                 return;
-            _pdfDocSearch = new PdfDocumentSearch(GetCurrentPage());
+            _pdfDocSearch = new PdfDocumentSearch(CurrentPage);
             _findDialog = new FindDialog();
             _findDialog.Closed += FindDialogOnClosed;
             _findDialog.FindNext += FindDialogOnFindNext;
@@ -353,7 +370,7 @@ namespace Atalasoft.Demo.PdfViewer
                 MessageBox.Show(Resources.TextNotFoundMessage, Resources.TitleSearchMessage, MessageBoxButtons.OK);
             }
         }
-        
+
         private void MouseToolButtonsOnCheckedChanged(object sender, EventArgs e)
         {
             var btn = sender as ToolStripButton;
@@ -376,6 +393,18 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
+        private void PreviousPageButtonOnClick(object sender, EventArgs e)
+        {
+            if (CurrentPage != 0)
+                ViewPage(CurrentPage - 1);
+        }
+
+        private void NextPageButtonOnClick(object sender, EventArgs e)
+        {
+            if (CurrentPage + 1 < _thumbnailView.Items.Count)
+                ViewPage(CurrentPage + 1);
+        }
+
         #endregion
 
         #region Private methods
@@ -393,11 +422,6 @@ namespace Atalasoft.Demo.PdfViewer
                 if (item != exceptButton)
                     item.Checked = false;
             }
-        }
-
-        private int GetCurrentPage()
-        {
-            return _thumbnailView.SelectedIndices.Length > 0 ? _thumbnailView.SelectedIndices[0] : 0;
         }
 
         private void ShowLicenseMessage(string product)
@@ -432,28 +456,28 @@ namespace Atalasoft.Demo.PdfViewer
 
         private void ScrollToNextPage(Point position)
         {
-            if (GetCurrentPage() == _thumbnailView.Items.Count - 1)
+            if (CurrentPage == _thumbnailView.Items.Count - 1)
                 return;
             if (!_isLowerLimit)
             {
                 _isLowerLimit = true;
                 return;
             }
-            ViewPage(GetCurrentPage() + 1);
+            ViewPage(CurrentPage + 1);
             _workspaceViewer.ScrollPosition = new Point(position.X, 0);
             _isLowerLimit = false;
         }
 
         private void ScrollToPreviousPage(Point position)
         {
-            if (GetCurrentPage() == 0)
+            if (CurrentPage == 0)
                 return;
             if (!_isUpperLimit)
             {
                 _isUpperLimit = true;
                 return;
             }
-            ViewPage(GetCurrentPage() - 1);
+            ViewPage(CurrentPage - 1);
             _workspaceViewer.ScrollPosition = new Point(position.X, GetLowerScrollPosition());
             _isUpperLimit = false;
         }
@@ -473,6 +497,7 @@ namespace Atalasoft.Demo.PdfViewer
                 _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
             }
             _thumbnailView.Items[number].Selected = true;
+            CurrentPage = number;
         }
 
         private void ResetMouseToolsButtons(ToolStripButton exceptButton = null)
@@ -506,7 +531,7 @@ namespace Atalasoft.Demo.PdfViewer
             if (page.PageIndex < 0 || page.PageIndex >= _thumbnailView.Items.Count)
                 return;
             // Selecting the thumbnail will load the page.
-            var pageIndex = GetCurrentPage();
+            var pageIndex = CurrentPage;
             if (pageIndex != page.PageIndex)
             {
                 _thumbnailView.ClearSelection();
