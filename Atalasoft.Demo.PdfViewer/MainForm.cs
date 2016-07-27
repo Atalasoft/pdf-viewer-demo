@@ -509,6 +509,34 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
+        private void CurrentPageBoxOnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CurrentPageBoxOnLeave(object sender, EventArgs e)
+        {
+            if (_thumbnailView.Items.Count == 0 || string.IsNullOrEmpty(_currentPageBox.Text))
+                return;
+            var number = Convert.ToInt32(_currentPageBox.Text) - 1;
+            ViewPage(Math.Min(number, _thumbnailView.Items.Count - 1));
+
+        }
+
+        private void CurrentPageBoxOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_thumbnailView.Items.Count == 0 || string.IsNullOrEmpty(_currentPageBox.Text))
+                    return;
+                var number = Convert.ToInt32(_currentPageBox.Text) - 1;
+                ViewPage(Math.Min(number, _thumbnailView.Items.Count - 1));
+            }
+        }
+
         #endregion
 
         #region Bookmark Code

@@ -621,6 +621,9 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._currentPageBox.Name = "_currentPageBox";
             this._currentPageBox.Size = new System.Drawing.Size(40, 39);
+            this._currentPageBox.Leave += new System.EventHandler(this.CurrentPageBoxOnLeave);
+            this._currentPageBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CurrentPageBoxOnKeyDown);
+            this._currentPageBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CurrentPageBoxOnKeyPress);
             // 
             // _totalPageLabel
             // 
