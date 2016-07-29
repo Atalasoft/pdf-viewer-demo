@@ -6,6 +6,8 @@
 
 using System;
 using System.Windows.Forms;
+using Atalasoft.Demo.PdfViewer.Properties;
+using Squirrel;
 
 namespace Atalasoft.Demo.PdfViewer
 {
@@ -17,7 +19,19 @@ namespace Atalasoft.Demo.PdfViewer
 		[STAThread]
 		static void Main()
 		{
-			Application.EnableVisualStyles();
+            try
+            {
+                using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/Atalasoft/pdf-viewer-demo"))
+                {
+                    mgr.Result.UpdateApp();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Resources.UpgradeErrorMessage, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
 		}
