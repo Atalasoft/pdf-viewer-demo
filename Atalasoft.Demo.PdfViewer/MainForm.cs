@@ -191,6 +191,11 @@ namespace Atalasoft.Demo.PdfViewer
             _workspaceViewer.Save(_saveFileDialog.FileName, encoder);
         }
 
+        private void MenuExitOnClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void MenuViewFullSizeOnClick(object sender, EventArgs e)
         {
             SetZoomMode(AutoZoomMode.None);

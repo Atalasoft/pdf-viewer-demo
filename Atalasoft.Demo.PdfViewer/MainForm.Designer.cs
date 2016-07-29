@@ -79,6 +79,8 @@ namespace Atalasoft.Demo.PdfViewer
             this._magnifierButton = new System.Windows.Forms.ToolStripButton();
             this._zoomButton = new System.Windows.Forms.ToolStripButton();
             this._zoomAreaButton = new System.Windows.Forms.ToolStripButton();
+            this._fileMenuSplitter = new System.Windows.Forms.ToolStripSeparator();
+            this._exitButton = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).BeginInit();
             this._toolStripContainer.ContentPanel.SuspendLayout();
@@ -100,20 +102,20 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuViewBestFit});
             this._menuView.Name = "_menuView";
             this._menuView.Size = new System.Drawing.Size(44, 20);
-            this._menuView.Text = "View";
+            this._menuView.Text = "&View";
             // 
             // _menuViewFullSize
             // 
             this._menuViewFullSize.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewFullSize.Image")));
             this._menuViewFullSize.Name = "_menuViewFullSize";
-            this._menuViewFullSize.Size = new System.Drawing.Size(139, 22);
+            this._menuViewFullSize.Size = new System.Drawing.Size(152, 22);
             this._menuViewFullSize.Text = "Full Size";
             this._menuViewFullSize.Click += new System.EventHandler(this.MenuViewFullSizeOnClick);
             // 
             // _menuViewFitWidth
             // 
             this._menuViewFitWidth.Name = "_menuViewFitWidth";
-            this._menuViewFitWidth.Size = new System.Drawing.Size(139, 22);
+            this._menuViewFitWidth.Size = new System.Drawing.Size(138, 22);
             this._menuViewFitWidth.Text = "Fit To Width";
             this._menuViewFitWidth.Click += new System.EventHandler(this.MenuViewFitWidthOnClick);
             // 
@@ -121,7 +123,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._menuViewBestFit.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewBestFit.Image")));
             this._menuViewBestFit.Name = "_menuViewBestFit";
-            this._menuViewBestFit.Size = new System.Drawing.Size(139, 22);
+            this._menuViewBestFit.Size = new System.Drawing.Size(138, 22);
             this._menuViewBestFit.Text = "Best Fit";
             this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewBestFitOnClick);
             // 
@@ -131,13 +133,13 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuPdfDecoderSettings});
             this._menuOptions.Name = "_menuOptions";
             this._menuOptions.Size = new System.Drawing.Size(61, 20);
-            this._menuOptions.Text = "Options";
+            this._menuOptions.Text = "&Options";
             // 
             // _menuPdfDecoderSettings
             // 
             this._menuPdfDecoderSettings.Name = "_menuPdfDecoderSettings";
             this._menuPdfDecoderSettings.Size = new System.Drawing.Size(185, 22);
-            this._menuPdfDecoderSettings.Text = "PDF decoder settings";
+            this._menuPdfDecoderSettings.Text = "&PDF decoder settings";
             this._menuPdfDecoderSettings.Click += new System.EventHandler(this.MenuPdfDecoderSettingsOnClick);
             // 
             // _menuHelp
@@ -146,13 +148,13 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuAbout});
             this._menuHelp.Name = "_menuHelp";
             this._menuHelp.Size = new System.Drawing.Size(44, 20);
-            this._menuHelp.Text = "Help";
+            this._menuHelp.Text = "&Help";
             // 
             // _menuAbout
             // 
             this._menuAbout.Name = "_menuAbout";
-            this._menuAbout.Size = new System.Drawing.Size(119, 22);
-            this._menuAbout.Text = "About ...";
+            this._menuAbout.Size = new System.Drawing.Size(152, 22);
+            this._menuAbout.Text = "&About ...";
             this._menuAbout.Click += new System.EventHandler(this.MenuAboutOnClick);
             // 
             // _menuFile
@@ -164,10 +166,12 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuExtractImages,
             this._menuGetInfo,
             this._menuItemSplitter,
-            this._menuPrint});
+            this._menuPrint,
+            this._fileMenuSplitter,
+            this._exitButton});
             this._menuFile.Name = "_menuFile";
             this._menuFile.Size = new System.Drawing.Size(37, 20);
-            this._menuFile.Text = "File";
+            this._menuFile.Text = "&File";
             // 
             // _menuOpen
             // 
@@ -175,14 +179,14 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuOpen.Name = "_menuOpen";
             this._menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this._menuOpen.Size = new System.Drawing.Size(158, 22);
-            this._menuOpen.Text = "Open";
+            this._menuOpen.Text = "&Open";
             this._menuOpen.Click += new System.EventHandler(this.MenuOpenOnClick);
             // 
             // _menuSave
             // 
             this._menuSave.Name = "_menuSave";
             this._menuSave.Size = new System.Drawing.Size(158, 22);
-            this._menuSave.Text = "Save As";
+            this._menuSave.Text = "&Save As";
             this._menuSave.Click += new System.EventHandler(this.MenuSaveOnClick);
             // 
             // _menuItemFind
@@ -199,14 +203,14 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._menuExtractImages.Name = "_menuExtractImages";
             this._menuExtractImages.Size = new System.Drawing.Size(158, 22);
-            this._menuExtractImages.Text = "Extract Images";
+            this._menuExtractImages.Text = "&Extract Images";
             this._menuExtractImages.Click += new System.EventHandler(this.MenuExtractImagesOnClick);
             // 
             // _menuGetInfo
             // 
             this._menuGetInfo.Name = "_menuGetInfo";
             this._menuGetInfo.Size = new System.Drawing.Size(158, 22);
-            this._menuGetInfo.Text = "Get Information";
+            this._menuGetInfo.Text = "&Get Information";
             this._menuGetInfo.Click += new System.EventHandler(this.MenuGetInfoOnClick);
             // 
             // _menuItemSplitter
@@ -219,7 +223,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._menuPrint.Image = ((System.Drawing.Image)(resources.GetObject("_menuPrint.Image")));
             this._menuPrint.Name = "_menuPrint";
             this._menuPrint.Size = new System.Drawing.Size(158, 22);
-            this._menuPrint.Text = "Print ... ";
+            this._menuPrint.Text = "&Print ... ";
             this._menuPrint.Click += new System.EventHandler(this.MenuPrintOnClick);
             // 
             // _openFileDialog
@@ -558,6 +562,19 @@ namespace Atalasoft.Demo.PdfViewer
             this._zoomAreaButton.ToolTipText = "Zoom Area";
             this._zoomAreaButton.CheckedChanged += new System.EventHandler(this.ZoomAreaButtonOnCheckedChanged);
             // 
+            // _fileMenuSplitter
+            // 
+            this._fileMenuSplitter.Name = "_fileMenuSplitter";
+            this._fileMenuSplitter.Size = new System.Drawing.Size(155, 6);
+            // 
+            // _exitButton
+            // 
+            this._exitButton.Name = "_exitButton";
+            this._exitButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this._exitButton.Size = new System.Drawing.Size(158, 22);
+            this._exitButton.Text = "E&xit";
+            this._exitButton.Click += new System.EventHandler(this.MenuExitOnClick);
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -635,6 +652,8 @@ namespace Atalasoft.Demo.PdfViewer
         private System.Windows.Forms.ToolStripButton _magnifierButton;
         private System.Windows.Forms.ToolStripButton _zoomButton;
         private System.Windows.Forms.ToolStripButton _zoomAreaButton;
-	}
+        private System.Windows.Forms.ToolStripSeparator _fileMenuSplitter;
+        private System.Windows.Forms.ToolStripMenuItem _exitButton;
+    }
 }
 
