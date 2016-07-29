@@ -194,5 +194,14 @@ namespace Atalasoft.Demo.PdfViewer.Properties {
                 return ResourceManager.GetString("TitleSearchMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade Error.
+        /// </summary>
+        internal static string UpgradeErrorMessage {
+            get {
+                return ResourceManager.GetString("UpgradeErrorMessage", resourceCulture);
+            }
+        }
     }
 }
