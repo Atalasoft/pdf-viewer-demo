@@ -209,4 +209,10 @@ Please run it from the start menu.</value>
   <data name="UpgradeErrorMessage" xml:space="preserve">
     <value>Upgrade Error</value>
   </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update is available</value>
+  </data>
+  <data name="UpdateAvailableQuestion" xml:space="preserve">
+    <value>Update is available. Do you want to restart the application now?</value>
+  </data>
 </root>
