@@ -194,5 +194,32 @@ namespace Atalasoft.Demo.PdfViewer.Properties {
                 return ResourceManager.GetString("TitleSearchMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update is available.
+        /// </summary>
+        internal static string UpdateAvailable {
+            get {
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update is available. Do you want to restart the application now?.
+        /// </summary>
+        internal static string UpdateAvailableQuestion {
+            get {
+                return ResourceManager.GetString("UpdateAvailableQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade Error.
+        /// </summary>
+        internal static string UpgradeErrorMessage {
+            get {
+                return ResourceManager.GetString("UpgradeErrorMessage", resourceCulture);
+            }
+        }
     }
 }

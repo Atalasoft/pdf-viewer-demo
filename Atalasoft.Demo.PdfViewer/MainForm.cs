@@ -126,7 +126,7 @@ namespace Atalasoft.Demo.PdfViewer
 
             //open the first full size page
             ViewPage(0);
-            
+
             _extractedImages = false;
             _currentFile = file;
             _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
@@ -206,6 +206,11 @@ namespace Atalasoft.Demo.PdfViewer
             _workspaceViewer.Save(_saveFileDialog.FileName, encoder);
         }
 
+        private void MenuExitOnClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void MenuViewItemOnClick(object sender, EventArgs e)
         {
             var button = sender as ToolStripItem;
@@ -214,7 +219,7 @@ namespace Atalasoft.Demo.PdfViewer
                 return;
             var zoomMode = (AutoZoomMode)button.Tag;
             _workspaceViewer.AutoZoom = zoomMode;
-            
+
             _workspaceViewer.Zoom = 1;
         }
 
@@ -375,14 +380,14 @@ namespace Atalasoft.Demo.PdfViewer
                 return;
 
             if (btn.Checked)
-            {
+        {
                 var mouseToolType = (MouseToolType)btn.Tag;
                 ResetMouseToolsButtons(btn);
                 _workspaceViewer.MouseTool = mouseToolType;
                 if (mouseToolType == MouseToolType.Zoom || mouseToolType == MouseToolType.ZoomArea)
-                {
+            {
                     _workspaceViewer.AutoZoom = AutoZoomMode.None;
-                }
+            }
             }
             else
             {
@@ -397,7 +402,7 @@ namespace Atalasoft.Demo.PdfViewer
         }
 
         private void NextPageButtonOnClick(object sender, EventArgs e)
-        {
+            {
             if (CurrentPage + 1 < _thumbnailView.Items.Count)
                 ViewPage(CurrentPage + 1);
         }
@@ -405,7 +410,7 @@ namespace Atalasoft.Demo.PdfViewer
         #endregion
 
         #region Private methods
-        
+
         private void ShowLicenseMessage(string product)
         {
             var dialogResult = MessageBox.Show(

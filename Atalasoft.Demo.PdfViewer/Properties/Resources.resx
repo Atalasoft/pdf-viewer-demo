@@ -159,52 +159,60 @@ Please run it from the start menu.</value>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BookmarkGray" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAACYktHRAD/h4/MvwAAAAd0SU1FB+AHFQ4pHrugRR0AAAFe
-        SURBVDhPjVC7isJQFEy5n7GypYXF/sl+gH8QC6NosDJBKwsfRUQhgiSgoAY0jRoUQUGwSCMIASv9j/Ge
-        o6RYXfcODOfM3HPmJlf5jVQqlU4mk8hmsy9ZKBTSj9HXoOV6vY7L5cK8Xq8xd7sdhzxGX4MGoihCuVxG
-        pVJBtVrlapomzuezXMDpdEKtVkOj0UCz2eRKmnypgOPxiFarBcuy0G63uZImXyogDENe6nQ66Ha7XEmT
-        LxVwOBx40bbtmKTJlwrY7/fo9Xro9/sxSZMvFbDdbuE4DlzXjUmafKmAzWaDwWDwRPKlAlarFcbjMSaT
-        CTzP4zoajdiXCgiCALPZjB/PMAwMh0NMp1Msl8v/A3K5HA/Sw6mq6v8IaJrm01csFguI/n1APp/n/81k
-        MnMhPwU/qAp/7vs+6Jzm/oSu63TLWrSJuxMjUSqV1sVi8X2AwLfg1719Avl0/oCi3AAWE11X6QCcYQAA
-        AABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EgAACxIB0t1+/AAAAAd0SU1FB+AHFQ4pHrugRR0AAAFeSURBVDhPjVC7isJQFEy5n7GypYXF/sl+gH8Q
+        C6NosDJBKwsfRUQhgiSgoAY0jRoUQUGwSCMIASv9j/Geo6RYXfcODOfM3HPmJlf5jVQqlU4mk8hmsy9Z
+        KBTSj9HXoOV6vY7L5cK8Xq8xd7sdhzxGX4MGoihCuVxGpVJBtVrlapomzuezXMDpdEKtVkOj0UCz2eRK
+        mnypgOPxiFarBcuy0G63uZImXyogDENe6nQ66Ha7XEmTLxVwOBx40bbtmKTJlwrY7/fo9Xro9/sxSZMv
+        FbDdbuE4DlzXjUmafKmAzWaDwWDwRPKlAlarFcbjMSaTCTzP4zoajdiXCgiCALPZjB/PMAwMh0NMp1Ms
+        l8v/A3K5HA/Sw6mq6v8IaJrm01csFguI/n1APp/n/81kMnMhPwU/qAp/7vs+6Jzm/oSu63TLWrSJuxMj
+        USqV1sVi8X2AwLfg1719Avl0/oCi3AAWE11X6QCcYQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="BookmarkTabImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
+        AElFTkSuQmCC
 </value>
   </data>
   <data name="PagesTabImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADCElEQVRYR61WSW7bQBA0EOdo
-        IBf7CznklBcESC75ZeDY2k1Zh9wTGDnFf7CsjZskaqE2Soo6XS1yINpkyLFcQGEoznR39bCG4gnj1Li9
-        /WE0GnRTr1MtlYaMvJaqNzcNxCH4NXCGpDpwHIcKpVKdY9/sUxyHc3QOPDQfqfnYirPVlvGh2ZI1V4WC
-        jLZtU7la/cXxR+/EBbYWaHGxdrtDnU5X2OuZZJqWENdAqVIh35/Jdb/fxyPpco63+1QvgxLQ5qJdLgRa
-        tkM/7+6kYLFSpmJ5T+6af/O98Jr9QDXDOMobSkDX7JFpWVzcIpe7Q3EdvNQbF+gA6Fm2dG47LvUHQ+kS
-        0PUGx2mJUAJs7sBxXeneG3lKwEu8wY+nxrlziVACXLfPwQMacPfj8UQJONYbTIfrpBpVCegPPBoMPRp6
-        I5pMfSqEAl7DGyyox7USRSgB3nBEHhcfjcaynYVySe5reSMk5oDvoTcsbqCSIkIJGPG2g+PJlGbzBRwt
-        9zO98YS4hzngmnOgIcA0zUQRSsBkOhVOfZ8Wy6USkMcbT4k5ADlWQSCxAHaiahgxEUoAth2czeYUrAIl
-        IMsbScQcEOWAiGgn4Ak2psu1RYQSMJvPhfPFgoLNWgVneSOJPdOWNX/u7+UxIBfGyBM4HVz7XUzAYrEU
-        Lpcr2m7/SgCQ5Y0kYm4682VdEvD2Re2YgGC1ohUz4O3a7XZ0XSzK/SxvpBHzMfIpcpgAaj4XEGyYa1qv
-        N/I7EpDljbzEEQaBRAHb7ZY2m42MwFUoIMsbWuQYIC4g/DcU8NZHiHYgyxu6BGIC8D2YhOi4ZXlDl0BM
-        QL3R8HEssBOYwIjPtEqtJouzvKFL4FAAzuJH5mfmlwN+xSIgyxu6BA4F4G0EEfhxyPd5vaFL4FBAGnJ7
-        Q4eIAfIIOP92efk7jzf0uPdRHgFnzA/MT8z/ekOHkY/yCMDnNUScM7Ew4nNv6DAEcoT5tJHqDR0gB3Lt
-        U+rh+XtDhxyDWPiLc2F3tZH23tAhfAV/4RFrI+29oUN0zsVPTv8B6E432/gXGhAAAAAASUVORK5CYII=
+        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
 </value>
+  </data>
+  <data name="UpgradeErrorMessage" xml:space="preserve">
+    <value>Upgrade Error</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Update is available</value>
+  </data>
+  <data name="UpdateAvailableQuestion" xml:space="preserve">
+    <value>Update is available. Do you want to restart the application now?</value>
   </data>
 </root>
