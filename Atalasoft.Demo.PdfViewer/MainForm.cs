@@ -208,7 +208,7 @@ namespace Atalasoft.Demo.PdfViewer
 
         private void MenuViewItemOnClick(object sender, EventArgs e)
         {
-            var button = sender as ToolStripMenuItem;
+            var button = sender as ToolStripItem;
 
             if (button == null)
                 return;
