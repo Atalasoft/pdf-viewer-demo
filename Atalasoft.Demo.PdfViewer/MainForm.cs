@@ -126,9 +126,7 @@ namespace Atalasoft.Demo.PdfViewer
 
             //open the first full size page
             ViewPage(0);
-
-            ResetZoomButtons();
-
+            
             _extractedImages = false;
             _currentFile = file;
             _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
@@ -212,13 +210,12 @@ namespace Atalasoft.Demo.PdfViewer
         {
             var button = sender as ToolStripMenuItem;
 
-            if (button == null || button.Checked)
+            if (button == null)
                 return;
             var zoomMode = (AutoZoomMode)button.Tag;
-            SetZoomMode(zoomMode);
-            if (zoomMode == AutoZoomMode.None)
-                _workspaceViewer.Zoom = 1;
-            button.Checked = true;
+            _workspaceViewer.AutoZoom = zoomMode;
+            
+            _workspaceViewer.Zoom = 1;
         }
 
         private void MenuAboutOnClick(object sender, EventArgs e)
@@ -379,12 +376,12 @@ namespace Atalasoft.Demo.PdfViewer
 
             if (btn.Checked)
             {
-                var zoomMode = (MouseToolType)btn.Tag;
+                var mouseToolType = (MouseToolType)btn.Tag;
                 ResetMouseToolsButtons(btn);
-                _workspaceViewer.MouseTool = zoomMode;
-                if (zoomMode == MouseToolType.Zoom || zoomMode == MouseToolType.ZoomArea)
+                _workspaceViewer.MouseTool = mouseToolType;
+                if (mouseToolType == MouseToolType.Zoom || mouseToolType == MouseToolType.ZoomArea)
                 {
-                    SetZoomMode(AutoZoomMode.None);
+                    _workspaceViewer.AutoZoom = AutoZoomMode.None;
                 }
             }
             else
@@ -408,22 +405,7 @@ namespace Atalasoft.Demo.PdfViewer
         #endregion
 
         #region Private methods
-
-        private void SetZoomMode(AutoZoomMode zoomMode)
-        {
-            _workspaceViewer.AutoZoom = zoomMode;
-            ResetZoomButtons();
-        }
-
-        private void ResetZoomButtons(ToolStripMenuItem exceptButton = null)
-        {
-            foreach (ToolStripMenuItem item in _menuView.DropDownItems)
-            {
-                if (item != exceptButton)
-                    item.Checked = false;
-            }
-        }
-
+        
         private void ShowLicenseMessage(string product)
         {
             var dialogResult = MessageBox.Show(

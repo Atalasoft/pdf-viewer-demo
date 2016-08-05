@@ -113,7 +113,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._menuViewFullSize.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewFullSize.Image")));
             this._menuViewFullSize.Name = "_menuViewFullSize";
-            this._menuViewFullSize.Size = new System.Drawing.Size(152, 22);
+            this._menuViewFullSize.Size = new System.Drawing.Size(139, 22);
             this._menuViewFullSize.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.None;
             this._menuViewFullSize.Text = "Full Size";
             this._menuViewFullSize.Click += new System.EventHandler(this.MenuViewItemOnClick);
@@ -121,7 +121,7 @@ namespace Atalasoft.Demo.PdfViewer
             // _menuViewFitWidth
             // 
             this._menuViewFitWidth.Name = "_menuViewFitWidth";
-            this._menuViewFitWidth.Size = new System.Drawing.Size(152, 22);
+            this._menuViewFitWidth.Size = new System.Drawing.Size(139, 22);
             this._menuViewFitWidth.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.FitToWidth;
             this._menuViewFitWidth.Text = "Fit To Width";
             this._menuViewFitWidth.Click += new System.EventHandler(this.MenuViewItemOnClick);
@@ -130,7 +130,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._menuViewBestFit.Image = ((System.Drawing.Image)(resources.GetObject("_menuViewBestFit.Image")));
             this._menuViewBestFit.Name = "_menuViewBestFit";
-            this._menuViewBestFit.Size = new System.Drawing.Size(152, 22);
+            this._menuViewBestFit.Size = new System.Drawing.Size(139, 22);
             this._menuViewBestFit.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.BestFit;
             this._menuViewBestFit.Text = "Best Fit";
             this._menuViewBestFit.Click += new System.EventHandler(this.MenuViewItemOnClick);
@@ -511,7 +511,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._magnifierButton,
             this._zoomButton,
             this._zoomAreaButton});
-            this._mouseToolStripMenu.Location = new System.Drawing.Point(123, 24);
+            this._mouseToolStripMenu.Location = new System.Drawing.Point(313, 24);
             this._mouseToolStripMenu.Name = "_mouseToolStripMenu";
             this._mouseToolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._mouseToolStripMenu.Size = new System.Drawing.Size(156, 39);
@@ -582,7 +582,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._toolStripSeparator,
             this._currentPageBox,
             this._totalPageLabel});
-            this._navigationToolStrip.Location = new System.Drawing.Point(279, 24);
+            this._navigationToolStrip.Location = new System.Drawing.Point(123, 24);
             this._navigationToolStrip.Name = "_navigationToolStrip";
             this._navigationToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._navigationToolStrip.Size = new System.Drawing.Size(190, 39);
