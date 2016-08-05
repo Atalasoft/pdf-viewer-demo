@@ -59,7 +59,6 @@ namespace Atalasoft.Demo.PdfViewer
             this._statusBar = new System.Windows.Forms.StatusBar();
             this._statusBarPanel = new System.Windows.Forms.StatusBarPanel();
             this._statusProgress = new System.Windows.Forms.StatusBarPanel();
-            this._progressBar = new System.Windows.Forms.ProgressBar();
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this._toolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this._workspaceViewer = new Atalasoft.Annotate.UI.AnnotateViewer();
@@ -71,26 +70,29 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabBookmarks = new System.Windows.Forms.TabPage();
             this._bookmarksLabel = new System.Windows.Forms.Label();
             this._treeBookmarks = new System.Windows.Forms.TreeView();
-            this._mainMenu = new System.Windows.Forms.MenuStrip();
             this._toolStripMenu = new System.Windows.Forms.ToolStrip();
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._findButton = new System.Windows.Forms.ToolStripButton();
             this._printButton = new System.Windows.Forms.ToolStripButton();
-            this._zoomToolStrip = new System.Windows.Forms.ToolStrip();
-            this._fullSizeButton = new System.Windows.Forms.ToolStripButton();
-            this._fitWidthButton = new System.Windows.Forms.ToolStripButton();
-            this._bestFitButton = new System.Windows.Forms.ToolStripButton();
+            this._mouseToolStripMenu = new System.Windows.Forms.ToolStrip();
+            this._panButton = new System.Windows.Forms.ToolStripButton();
+            this._magnifierButton = new System.Windows.Forms.ToolStripButton();
+            this._zoomButton = new System.Windows.Forms.ToolStripButton();
+            this._zoomAreaButton = new System.Windows.Forms.ToolStripButton();
             this._navigationToolStrip = new System.Windows.Forms.ToolStrip();
             this._previousPageButton = new System.Windows.Forms.ToolStripButton();
             this._nextPageButton = new System.Windows.Forms.ToolStripButton();
             this._toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._currentPageBox = new System.Windows.Forms.ToolStripTextBox();
             this._totalPageLabel = new System.Windows.Forms.ToolStripLabel();
-            this._mouseToolStripMenu = new System.Windows.Forms.ToolStrip();
-            this._panButton = new System.Windows.Forms.ToolStripButton();
-            this._magnifierButton = new System.Windows.Forms.ToolStripButton();
-            this._zoomButton = new System.Windows.Forms.ToolStripButton();
-            this._zoomAreaButton = new System.Windows.Forms.ToolStripButton();
+            this._zoomToolStrip = new System.Windows.Forms.ToolStrip();
+            this._fullSizeButton = new System.Windows.Forms.ToolStripButton();
+            this._fitWidthButton = new System.Windows.Forms.ToolStripButton();
+            this._bestFitButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._zoomInButton = new System.Windows.Forms.ToolStripButton();
+            this._zoomOutButton = new System.Windows.Forms.ToolStripButton();
+            this._mainMenu = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this._statusBarPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._statusProgress)).BeginInit();
             this._toolStripContainer.ContentPanel.SuspendLayout();
@@ -99,11 +101,11 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabControl.SuspendLayout();
             this._tabPages.SuspendLayout();
             this._tabBookmarks.SuspendLayout();
-            this._mainMenu.SuspendLayout();
             this._toolStripMenu.SuspendLayout();
-            this._zoomToolStrip.SuspendLayout();
-            this._navigationToolStrip.SuspendLayout();
             this._mouseToolStripMenu.SuspendLayout();
+            this._navigationToolStrip.SuspendLayout();
+            this._zoomToolStrip.SuspendLayout();
+            this._mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // _menuView
@@ -287,36 +289,29 @@ namespace Atalasoft.Demo.PdfViewer
             this._statusProgress.Name = "_statusProgress";
             this._statusProgress.Width = 300;
             // 
-            // _progressBar
-            // 
-            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._progressBar.Location = new System.Drawing.Point(646, 688);
-            this._progressBar.Name = "_progressBar";
-            this._progressBar.Size = new System.Drawing.Size(300, 20);
-            this._progressBar.TabIndex = 3;
-            // 
             // _toolStripContainer
             // 
+            this._toolStripContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // _toolStripContainer.ContentPanel
             // 
             this._toolStripContainer.ContentPanel.Controls.Add(this._workspaceViewer);
             this._toolStripContainer.ContentPanel.Controls.Add(this._splitter);
             this._toolStripContainer.ContentPanel.Controls.Add(this._tabControl);
-            this._toolStripContainer.ContentPanel.Size = new System.Drawing.Size(960, 623);
-            this._toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._toolStripContainer.Location = new System.Drawing.Point(0, 0);
+            this._toolStripContainer.ContentPanel.Size = new System.Drawing.Size(960, 620);
+            this._toolStripContainer.Location = new System.Drawing.Point(0, 27);
             this._toolStripContainer.Name = "_toolStripContainer";
-            this._toolStripContainer.Size = new System.Drawing.Size(960, 686);
+            this._toolStripContainer.Size = new System.Drawing.Size(960, 659);
             this._toolStripContainer.TabIndex = 6;
             this._toolStripContainer.Text = "toolStripContainer1";
             // 
             // _toolStripContainer.TopToolStripPanel
             // 
-            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mainMenu);
-            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._toolStripMenu);
-            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._navigationToolStrip);
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._zoomToolStrip);
+            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._navigationToolStrip);
+            this._toolStripContainer.TopToolStripPanel.Controls.Add(this._toolStripMenu);
             this._toolStripContainer.TopToolStripPanel.Controls.Add(this._mouseToolStripMenu);
             // 
             // _workspaceViewer
@@ -338,7 +333,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._workspaceViewer.RotationSnapInterval = 0F;
             this._workspaceViewer.RotationSnapThreshold = 0F;
             this._workspaceViewer.Selection = null;
-            this._workspaceViewer.Size = new System.Drawing.Size(748, 623);
+            this._workspaceViewer.Size = new System.Drawing.Size(748, 620);
             this._workspaceViewer.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             this._workspaceViewer.TabIndex = 6;
             this._workspaceViewer.Text = "workspaceViewer1";
@@ -351,7 +346,7 @@ namespace Atalasoft.Demo.PdfViewer
             // 
             this._splitter.Location = new System.Drawing.Point(206, 0);
             this._splitter.Name = "_splitter";
-            this._splitter.Size = new System.Drawing.Size(6, 623);
+            this._splitter.Size = new System.Drawing.Size(6, 620);
             this._splitter.TabIndex = 8;
             this._splitter.TabStop = false;
             // 
@@ -366,7 +361,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabControl.Multiline = true;
             this._tabControl.Name = "_tabControl";
             this._tabControl.SelectedIndex = 0;
-            this._tabControl.Size = new System.Drawing.Size(206, 623);
+            this._tabControl.Size = new System.Drawing.Size(206, 620);
             this._tabControl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this._tabControl.TabIndex = 7;
             // 
@@ -378,7 +373,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabPages.Location = new System.Drawing.Point(39, 4);
             this._tabPages.Name = "_tabPages";
             this._tabPages.Padding = new System.Windows.Forms.Padding(3);
-            this._tabPages.Size = new System.Drawing.Size(163, 615);
+            this._tabPages.Size = new System.Drawing.Size(163, 612);
             this._tabPages.TabIndex = 0;
             this._tabPages.ToolTipText = "Pages";
             this._tabPages.UseVisualStyleBackColor = true;
@@ -416,14 +411,13 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.SelectionRectangleBackColor = System.Drawing.Color.Transparent;
             this._thumbnailView.SelectionRectangleDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this._thumbnailView.SelectionRectangleLineColor = System.Drawing.Color.Black;
-            this._thumbnailView.Size = new System.Drawing.Size(157, 592);
+            this._thumbnailView.Size = new System.Drawing.Size(157, 589);
             this._thumbnailView.TabIndex = 2;
             this._thumbnailView.Text = "thumbnailView1";
             this._thumbnailView.ThumbnailBackground = null;
             this._thumbnailView.ThumbnailOffset = new System.Drawing.Point(0, 0);
             this._thumbnailView.ThumbnailSize = new System.Drawing.Size(100, 100);
             this._thumbnailView.SelectedIndexChanged += new System.EventHandler(this.ThumbnailViewOnSelectedIndexChanged);
-            this._thumbnailView.ThumbnailCreated += new Atalasoft.Imaging.WinControls.ThumbnailEventHandler(this.ThumbnailViewOnThumbnailLoad);
             // 
             // _tabBookmarks
             // 
@@ -433,7 +427,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabBookmarks.Location = new System.Drawing.Point(39, 4);
             this._tabBookmarks.Name = "_tabBookmarks";
             this._tabBookmarks.Padding = new System.Windows.Forms.Padding(3);
-            this._tabBookmarks.Size = new System.Drawing.Size(163, 615);
+            this._tabBookmarks.Size = new System.Drawing.Size(163, 534);
             this._tabBookmarks.TabIndex = 1;
             this._tabBookmarks.ToolTipText = "Bookmarks";
             this._tabBookmarks.UseVisualStyleBackColor = true;
@@ -460,23 +454,9 @@ namespace Atalasoft.Demo.PdfViewer
             this._treeBookmarks.ForeColor = System.Drawing.Color.Black;
             this._treeBookmarks.Location = new System.Drawing.Point(3, 23);
             this._treeBookmarks.Name = "_treeBookmarks";
-            this._treeBookmarks.Size = new System.Drawing.Size(157, 589);
+            this._treeBookmarks.Size = new System.Drawing.Size(157, 508);
             this._treeBookmarks.TabIndex = 0;
             this._treeBookmarks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeBookmarksOnAfterSelect);
-            // 
-            // _mainMenu
-            // 
-            this._mainMenu.Dock = System.Windows.Forms.DockStyle.None;
-            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._menuFile,
-            this._menuView,
-            this._menuOptions,
-            this._menuHelp});
-            this._mainMenu.Location = new System.Drawing.Point(0, 0);
-            this._mainMenu.Name = "_mainMenu";
-            this._mainMenu.Size = new System.Drawing.Size(960, 24);
-            this._mainMenu.TabIndex = 1;
-            this._mainMenu.Text = "_mainMenu";
             // 
             // _toolStripMenu
             // 
@@ -485,7 +465,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._openButton,
             this._findButton,
             this._printButton});
-            this._toolStripMenu.Location = new System.Drawing.Point(3, 24);
+            this._toolStripMenu.Location = new System.Drawing.Point(3, 0);
             this._toolStripMenu.Name = "_toolStripMenu";
             this._toolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._toolStripMenu.Size = new System.Drawing.Size(120, 39);
@@ -527,116 +507,6 @@ namespace Atalasoft.Demo.PdfViewer
             this._printButton.ToolTipText = "Print document";
             this._printButton.Click += new System.EventHandler(this.MenuPrintOnClick);
             // 
-            // _zoomToolStrip
-            // 
-            this._zoomToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._zoomToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._fullSizeButton,
-            this._fitWidthButton,
-            this._bestFitButton});
-            this._zoomToolStrip.Location = new System.Drawing.Point(123, 24);
-            this._zoomToolStrip.Name = "_zoomToolStrip";
-            this._zoomToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._zoomToolStrip.Size = new System.Drawing.Size(120, 39);
-            this._zoomToolStrip.TabIndex = 4;
-            // 
-            // _fullSizeButton
-            // 
-            this._fullSizeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._fullSizeButton.Image = ((System.Drawing.Image)(resources.GetObject("_fullSizeButton.Image")));
-            this._fullSizeButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._fullSizeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._fullSizeButton.Name = "_fullSizeButton";
-            this._fullSizeButton.Size = new System.Drawing.Size(36, 36);
-            this._fullSizeButton.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.None;
-            this._fullSizeButton.Text = "toolStripButton1";
-            this._fullSizeButton.ToolTipText = "Full Size";
-            this._fullSizeButton.Click += new System.EventHandler(this.MenuViewItemOnClick);
-            // 
-            // _fitWidthButton
-            // 
-            this._fitWidthButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._fitWidthButton.Image = ((System.Drawing.Image)(resources.GetObject("_fitWidthButton.Image")));
-            this._fitWidthButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._fitWidthButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._fitWidthButton.Name = "_fitWidthButton";
-            this._fitWidthButton.Size = new System.Drawing.Size(36, 36);
-            this._fitWidthButton.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.FitToWidth;
-            this._fitWidthButton.Text = "toolStripButton1";
-            this._fitWidthButton.ToolTipText = "Fit to Width";
-            this._fitWidthButton.Click += new System.EventHandler(this.MenuViewItemOnClick);
-            // 
-            // _bestFitButton
-            // 
-            this._bestFitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._bestFitButton.Image = ((System.Drawing.Image)(resources.GetObject("_bestFitButton.Image")));
-            this._bestFitButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._bestFitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._bestFitButton.Name = "_bestFitButton";
-            this._bestFitButton.Size = new System.Drawing.Size(36, 36);
-            this._bestFitButton.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.BestFit;
-            this._bestFitButton.Text = "toolStripButton1";
-            this._bestFitButton.ToolTipText = "Best Fit";
-            this._bestFitButton.Click += new System.EventHandler(this.MenuViewItemOnClick);
-            // 
-            // _navigationToolStrip
-            // 
-            this._navigationToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._navigationToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._previousPageButton,
-            this._nextPageButton,
-            this._toolStripSeparator,
-            this._currentPageBox,
-            this._totalPageLabel});
-            this._navigationToolStrip.Location = new System.Drawing.Point(243, 24);
-            this._navigationToolStrip.Name = "_navigationToolStrip";
-            this._navigationToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._navigationToolStrip.Size = new System.Drawing.Size(159, 39);
-            this._navigationToolStrip.TabIndex = 3;
-            // 
-            // _previousPageButton
-            // 
-            this._previousPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._previousPageButton.Image = ((System.Drawing.Image)(resources.GetObject("_previousPageButton.Image")));
-            this._previousPageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._previousPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._previousPageButton.Name = "_previousPageButton";
-            this._previousPageButton.Size = new System.Drawing.Size(36, 36);
-            this._previousPageButton.Text = "toolStripButton1";
-            this._previousPageButton.ToolTipText = "Previous Page";
-            this._previousPageButton.Click += new System.EventHandler(this.PreviousPageButtonOnClick);
-            // 
-            // _nextPageButton
-            // 
-            this._nextPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._nextPageButton.Image = ((System.Drawing.Image)(resources.GetObject("_nextPageButton.Image")));
-            this._nextPageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._nextPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._nextPageButton.Name = "_nextPageButton";
-            this._nextPageButton.Size = new System.Drawing.Size(36, 36);
-            this._nextPageButton.Text = "toolStripButton2";
-            this._nextPageButton.ToolTipText = "Next Page";
-            this._nextPageButton.Click += new System.EventHandler(this.NextPageButtonOnClick);
-            // 
-            // _toolStripSeparator
-            // 
-            this._toolStripSeparator.Name = "_toolStripSeparator";
-            this._toolStripSeparator.Size = new System.Drawing.Size(6, 39);
-            // 
-            // _currentPageBox
-            // 
-            this._currentPageBox.Name = "_currentPageBox";
-            this._currentPageBox.Size = new System.Drawing.Size(40, 39);
-            this._currentPageBox.Leave += new System.EventHandler(this.CurrentPageBoxOnLeave);
-            this._currentPageBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CurrentPageBoxOnKeyDown);
-            this._currentPageBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CurrentPageBoxOnKeyPress);
-            // 
-            // _totalPageLabel
-            // 
-            this._totalPageLabel.Name = "_totalPageLabel";
-            this._totalPageLabel.Size = new System.Drawing.Size(27, 36);
-            this._totalPageLabel.Text = "of 0";
-            // 
             // _mouseToolStripMenu
             // 
             this._mouseToolStripMenu.Dock = System.Windows.Forms.DockStyle.None;
@@ -645,7 +515,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._magnifierButton,
             this._zoomButton,
             this._zoomAreaButton});
-            this._mouseToolStripMenu.Location = new System.Drawing.Point(402, 24);
+            this._mouseToolStripMenu.Location = new System.Drawing.Point(480, 0);
             this._mouseToolStripMenu.Name = "_mouseToolStripMenu";
             this._mouseToolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._mouseToolStripMenu.Size = new System.Drawing.Size(187, 39);
@@ -707,12 +577,167 @@ namespace Atalasoft.Demo.PdfViewer
             this._zoomAreaButton.ToolTipText = "Zoom Area";
             this._zoomAreaButton.CheckedChanged += new System.EventHandler(this.MouseToolButtonsOnCheckedChanged);
             // 
+            // _navigationToolStrip
+            // 
+            this._navigationToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._navigationToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._previousPageButton,
+            this._nextPageButton,
+            this._toolStripSeparator,
+            this._currentPageBox,
+            this._totalPageLabel});
+            this._navigationToolStrip.Location = new System.Drawing.Point(123, 0);
+            this._navigationToolStrip.Name = "_navigationToolStrip";
+            this._navigationToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._navigationToolStrip.Size = new System.Drawing.Size(159, 39);
+            this._navigationToolStrip.TabIndex = 3;
+            // 
+            // _previousPageButton
+            // 
+            this._previousPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._previousPageButton.Image = ((System.Drawing.Image)(resources.GetObject("_previousPageButton.Image")));
+            this._previousPageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._previousPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._previousPageButton.Name = "_previousPageButton";
+            this._previousPageButton.Size = new System.Drawing.Size(36, 36);
+            this._previousPageButton.Text = "toolStripButton1";
+            this._previousPageButton.ToolTipText = "Previous Page";
+            this._previousPageButton.Click += new System.EventHandler(this.PreviousPageButtonOnClick);
+            // 
+            // _nextPageButton
+            // 
+            this._nextPageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._nextPageButton.Image = ((System.Drawing.Image)(resources.GetObject("_nextPageButton.Image")));
+            this._nextPageButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._nextPageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._nextPageButton.Name = "_nextPageButton";
+            this._nextPageButton.Size = new System.Drawing.Size(36, 36);
+            this._nextPageButton.Text = "toolStripButton2";
+            this._nextPageButton.ToolTipText = "Next Page";
+            this._nextPageButton.Click += new System.EventHandler(this.NextPageButtonOnClick);
+            // 
+            // _toolStripSeparator
+            // 
+            this._toolStripSeparator.Name = "_toolStripSeparator";
+            this._toolStripSeparator.Size = new System.Drawing.Size(6, 39);
+            // 
+            // _currentPageBox
+            // 
+            this._currentPageBox.Name = "_currentPageBox";
+            this._currentPageBox.Size = new System.Drawing.Size(40, 39);
+            this._currentPageBox.Leave += new System.EventHandler(this.CurrentPageBoxOnLeave);
+            this._currentPageBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CurrentPageBoxOnKeyDown);
+            this._currentPageBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CurrentPageBoxOnKeyPress);
+            // 
+            // _totalPageLabel
+            // 
+            this._totalPageLabel.Name = "_totalPageLabel";
+            this._totalPageLabel.Size = new System.Drawing.Size(27, 36);
+            this._totalPageLabel.Text = "of 0";
+            // 
+            // _zoomToolStrip
+            // 
+            this._zoomToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._zoomToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._fullSizeButton,
+            this._fitWidthButton,
+            this._bestFitButton,
+            this.toolStripSeparator1,
+            this._zoomInButton,
+            this._zoomOutButton});
+            this._zoomToolStrip.Location = new System.Drawing.Point(282, 0);
+            this._zoomToolStrip.Name = "_zoomToolStrip";
+            this._zoomToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._zoomToolStrip.Size = new System.Drawing.Size(198, 39);
+            this._zoomToolStrip.TabIndex = 4;
+            // 
+            // _fullSizeButton
+            // 
+            this._fullSizeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._fullSizeButton.Image = ((System.Drawing.Image)(resources.GetObject("_fullSizeButton.Image")));
+            this._fullSizeButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._fullSizeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._fullSizeButton.Name = "_fullSizeButton";
+            this._fullSizeButton.Size = new System.Drawing.Size(36, 36);
+            this._fullSizeButton.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.None;
+            this._fullSizeButton.Text = "toolStripButton1";
+            this._fullSizeButton.ToolTipText = "Full Size";
+            this._fullSizeButton.Click += new System.EventHandler(this.MenuViewItemOnClick);
+            // 
+            // _fitWidthButton
+            // 
+            this._fitWidthButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._fitWidthButton.Image = ((System.Drawing.Image)(resources.GetObject("_fitWidthButton.Image")));
+            this._fitWidthButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._fitWidthButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._fitWidthButton.Name = "_fitWidthButton";
+            this._fitWidthButton.Size = new System.Drawing.Size(36, 36);
+            this._fitWidthButton.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.FitToWidth;
+            this._fitWidthButton.Text = "toolStripButton1";
+            this._fitWidthButton.ToolTipText = "Fit to Width";
+            this._fitWidthButton.Click += new System.EventHandler(this.MenuViewItemOnClick);
+            // 
+            // _bestFitButton
+            // 
+            this._bestFitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._bestFitButton.Image = ((System.Drawing.Image)(resources.GetObject("_bestFitButton.Image")));
+            this._bestFitButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._bestFitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._bestFitButton.Name = "_bestFitButton";
+            this._bestFitButton.Size = new System.Drawing.Size(36, 36);
+            this._bestFitButton.Tag = Atalasoft.Imaging.WinControls.AutoZoomMode.BestFit;
+            this._bestFitButton.Text = "toolStripButton1";
+            this._bestFitButton.ToolTipText = "Best Fit";
+            this._bestFitButton.Click += new System.EventHandler(this.MenuViewItemOnClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // _zoomInButton
+            // 
+            this._zoomInButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._zoomInButton.Image = ((System.Drawing.Image)(resources.GetObject("_zoomInButton.Image")));
+            this._zoomInButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._zoomInButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._zoomInButton.Name = "_zoomInButton";
+            this._zoomInButton.Size = new System.Drawing.Size(36, 36);
+            this._zoomInButton.Text = "toolStripButton1";
+            this._zoomInButton.ToolTipText = "Zoom In";
+            this._zoomInButton.Click += new System.EventHandler(this.ZoomInButtonOnClick);
+            // 
+            // _zoomOutButton
+            // 
+            this._zoomOutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._zoomOutButton.Image = ((System.Drawing.Image)(resources.GetObject("_zoomOutButton.Image")));
+            this._zoomOutButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._zoomOutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._zoomOutButton.Name = "_zoomOutButton";
+            this._zoomOutButton.Size = new System.Drawing.Size(36, 36);
+            this._zoomOutButton.Text = "toolStripButton1";
+            this._zoomOutButton.ToolTipText = "Zoom Out";
+            this._zoomOutButton.Click += new System.EventHandler(this.ZoomOutButtonOnClick);
+            // 
+            // _mainMenu
+            // 
+            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._menuFile,
+            this._menuView,
+            this._menuOptions,
+            this._menuHelp});
+            this._mainMenu.Location = new System.Drawing.Point(0, 0);
+            this._mainMenu.Name = "_mainMenu";
+            this._mainMenu.Size = new System.Drawing.Size(960, 24);
+            this._mainMenu.TabIndex = 1;
+            this._mainMenu.Text = "_mainMenu";
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(960, 708);
+            this.Controls.Add(this._mainMenu);
             this.Controls.Add(this._toolStripContainer);
-            this.Controls.Add(this._progressBar);
             this.Controls.Add(this._statusBar);
             this.MainMenuStrip = this._mainMenu;
             this.Name = "MainForm";
@@ -729,24 +754,24 @@ namespace Atalasoft.Demo.PdfViewer
             this._tabPages.PerformLayout();
             this._tabBookmarks.ResumeLayout(false);
             this._tabBookmarks.PerformLayout();
-            this._mainMenu.ResumeLayout(false);
-            this._mainMenu.PerformLayout();
             this._toolStripMenu.ResumeLayout(false);
             this._toolStripMenu.PerformLayout();
-            this._zoomToolStrip.ResumeLayout(false);
-            this._zoomToolStrip.PerformLayout();
-            this._navigationToolStrip.ResumeLayout(false);
-            this._navigationToolStrip.PerformLayout();
             this._mouseToolStripMenu.ResumeLayout(false);
             this._mouseToolStripMenu.PerformLayout();
+            this._navigationToolStrip.ResumeLayout(false);
+            this._navigationToolStrip.PerformLayout();
+            this._zoomToolStrip.ResumeLayout(false);
+            this._zoomToolStrip.PerformLayout();
+            this._mainMenu.ResumeLayout(false);
+            this._mainMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
 		#endregion
 
         private System.Windows.Forms.ToolTip _toolTip;
-		private System.Windows.Forms.ProgressBar _progressBar;
 		private System.Windows.Forms.StatusBarPanel _statusProgress;
 		private System.Windows.Forms.StatusBarPanel _statusBarPanel;
 		private System.Windows.Forms.StatusBar _statusBar;
@@ -800,6 +825,9 @@ namespace Atalasoft.Demo.PdfViewer
         private System.Windows.Forms.ToolStripButton _fullSizeButton;
         private System.Windows.Forms.ToolStripButton _fitWidthButton;
         private System.Windows.Forms.ToolStripButton _bestFitButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton _zoomInButton;
+        private System.Windows.Forms.ToolStripButton _zoomOutButton;
 	}
 }
 

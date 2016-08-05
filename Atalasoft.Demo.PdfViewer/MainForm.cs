@@ -111,11 +111,7 @@ namespace Atalasoft.Demo.PdfViewer
             _totalPageLabel.Text = @"of " + frameCount;
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
-
-            //reset progress bar
-            _progressBar.Maximum = frameCount;
-            _progressBar.Value = 0;
-
+            
             // Create the Thumbnail objects and pass them into the ThumbnailView all at once.
             var thumbs = new Thumbnail[frameCount];
             for (var i = 0; i < frameCount; i++)
@@ -163,17 +159,11 @@ namespace Atalasoft.Demo.PdfViewer
             {
                 using (var document = new Document(fs))
                 {
-                    //reset progress bar, estimate one image per page
-                    _progressBar.Maximum = 0;
-                    _progressBar.Value = 0;
-
 
                     for (var i = 0; i < document.Pages.Count; i++)
                     {
 
                         var extractedImages = document.Pages[i].ExtractImages();
-                        // check progressbar
-                        _progressBar.Maximum += extractedImages.Length;
                         foreach (var info in extractedImages)
                         {
                             _workspaceViewer.Images.Add((AtalaImage)info.Image.Clone());
@@ -294,14 +284,6 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
-        private void ThumbnailViewOnThumbnailLoad(object sender, ThumbnailEventArgs e)
-        {
-            // update the progressbar for every thumbnail load.
-            _progressBar.Value += 1;
-            if (_progressBar.Value == _progressBar.Maximum)
-                _progressBar.Value = 0;
-        }
-
         #region Printing
 
         private void MenuPrintOnClick(object sender, EventArgs e)
@@ -405,6 +387,18 @@ namespace Atalasoft.Demo.PdfViewer
             {
             if (CurrentPage + 1 < _thumbnailView.Items.Count)
                 ViewPage(CurrentPage + 1);
+        }
+        
+        private void ZoomInButtonOnClick(object sender, EventArgs e)
+        {
+            _workspaceViewer.AutoZoom = AutoZoomMode.None;
+            _workspaceViewer.Zoom *= 2;
+        }
+
+        private void ZoomOutButtonOnClick(object sender, EventArgs e)
+        {
+            _workspaceViewer.AutoZoom = AutoZoomMode.None;
+            _workspaceViewer.Zoom /= 2;
         }
 
         #endregion
