@@ -5,6 +5,7 @@
 // ------------------------------------------------------------------------------------
 
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -26,6 +27,8 @@ namespace Atalasoft.Demo.PdfViewer
     {
         #region Fields
 
+        private const double PdfDpi = 72.0;
+
         private Document _docToPrint;
         private Pages _imagesToPrint;
         private int _current;
@@ -43,6 +46,8 @@ namespace Atalasoft.Demo.PdfViewer
         private bool _isLowerLimit;
 
         private int _currentPage;
+        
+        private bool _ignoreBookmarkSelection;
 
         #endregion
 
@@ -111,7 +116,7 @@ namespace Atalasoft.Demo.PdfViewer
             _totalPageLabel.Text = @"of " + frameCount;
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
-            
+
             // Create the Thumbnail objects and pass them into the ThumbnailView all at once.
             var thumbs = new Thumbnail[frameCount];
             for (var i = 0; i < frameCount; i++)
@@ -362,14 +367,14 @@ namespace Atalasoft.Demo.PdfViewer
                 return;
 
             if (btn.Checked)
-        {
+            {
                 var mouseToolType = (MouseToolType)btn.Tag;
                 ResetMouseToolsButtons(btn);
                 _workspaceViewer.MouseTool = mouseToolType;
                 if (mouseToolType == MouseToolType.Zoom || mouseToolType == MouseToolType.ZoomArea)
-            {
+                {
                     _workspaceViewer.AutoZoom = AutoZoomMode.None;
-            }
+                }
             }
             else
             {
@@ -384,11 +389,11 @@ namespace Atalasoft.Demo.PdfViewer
         }
 
         private void NextPageButtonOnClick(object sender, EventArgs e)
-            {
+        {
             if (CurrentPage + 1 < _thumbnailView.Items.Count)
                 ViewPage(CurrentPage + 1);
         }
-        
+
         private void ZoomInButtonOnClick(object sender, EventArgs e)
         {
             _workspaceViewer.AutoZoom = AutoZoomMode.None;
@@ -522,9 +527,100 @@ namespace Atalasoft.Demo.PdfViewer
 
         #region Bookmark Code
 
+        private void CollapseAllButtonOnClick(object sender, EventArgs e)
+        {
+            _treeBookmarks.CollapseAll();
+        }
+
+        private void ExpandAllButtonOnClick(object sender, EventArgs e)
+        {
+            _treeBookmarks.ExpandAll();
+        }
+
+        private void CurrentBookmarkButtonOnClick(object sender, EventArgs e)
+        {
+            _ignoreBookmarkSelection = true;
+            try
+            {
+                SeekBookmark(_currentPage, _workspaceViewer.ScrollPosition.Y);
+            }
+            finally
+            {
+                _ignoreBookmarkSelection = false;
+            }
+        }
+
+        private void SeekBookmark(int pageIndex, int scrollPos)
+        {
+            var offset = (scrollPos + _workspaceViewer.Image.Height) * PdfDpi / _workspaceViewer.Image.Resolution.Y;
+            var node = GetNearestBookmark(_treeBookmarks.Nodes, pageIndex, offset);
+            _treeBookmarks.SelectedNode = node;
+            _treeBookmarks.Focus();
+        }
+
+        private TreeNode GetNearestBookmark(ICollection nodes, int pageIndex, double offset)
+        {
+            if (nodes == null || nodes.Count == 0)
+                return null;
+
+            TreeNode prevNode = null;
+            foreach (TreeNode node in nodes)
+            {
+                if (GetIsNodeBeforePosition(node, pageIndex, offset) == false)
+                {
+                    if (prevNode == null)
+                        return node;
+                    var kid = GetNearestBookmark(prevNode.Nodes, pageIndex, offset);
+                    return kid ?? prevNode;
+                }
+
+                prevNode = node;
+            }
+
+            if (prevNode == null)
+                return null;
+            return GetNearestBookmark(prevNode.Nodes, pageIndex, offset) ?? prevNode;
+        }
+
+        private bool? GetIsNodeBeforePosition(TreeNode node, int pageIndex, double offset)
+        {
+            if (node == null)
+                return null;
+            var destination = GetDestionation(node);
+            var page = destination.Page as PdfIndexedPageReference;
+            if (page == null)
+                return null;
+            if (page.PageIndex > pageIndex)
+                return false;
+            if (page.PageIndex < pageIndex)
+                return true;
+            return !(destination.Top < offset);
+        }
+
+        private PdfDestination GetDestionation(TreeNode node)
+        {
+            if (node == null)
+                return null;
+            var bm = node.Tag as PdfBookmark;
+            if (bm == null || bm.ClickAction.Count <= 0)
+                return null;
+            var action = bm.ClickAction[0];
+            if (action.ActionType != PdfActionType.GoToView)
+                return null;
+
+            var gotoView = action as PdfGoToViewAction;
+            if (gotoView == null || gotoView.Destination == null || gotoView.Destination.Page == null)
+                return null;
+
+            return gotoView.Destination;
+        }
+
         // When a bookmark is selected, load the page and scroll to the bookmark position.
         private void TreeBookmarksOnAfterSelect(object sender, TreeViewEventArgs e)
         {
+            if(_ignoreBookmarkSelection)
+                return;
+
             var bm = e.Node.Tag as PdfBookmark;
             if (bm == null || bm.ClickAction.Count <= 0)
                 return;
@@ -553,7 +649,7 @@ namespace Atalasoft.Demo.PdfViewer
             // Units are 1/72”
 
             var y = gotoView.Destination.Top.HasValue
-                ? Convert.ToInt32(gotoView.Destination.Top.Value / 72.0 * _workspaceViewer.Image.Resolution.Y)
+                ? Convert.ToInt32(gotoView.Destination.Top.Value / PdfDpi * _workspaceViewer.Image.Resolution.Y)
                 : 0;
             y = _workspaceViewer.Image.Height - y;
             _workspaceViewer.ScrollPosition = new Point(0, -y);
