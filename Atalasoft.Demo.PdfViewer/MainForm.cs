@@ -641,7 +641,7 @@ namespace Atalasoft.Demo.PdfViewer
             {
                 _thumbnailView.ClearSelection();
                 _thumbnailView.Items[page.PageIndex].Selected = true;
-                _thumbnailView.ScrollTo(page.PageIndex);
+                _thumbnailView.ScrollTo(_thumbnailView.Items[page.PageIndex]);
             }
 
             // The bookmark coordinates are in PDF page coordinates.

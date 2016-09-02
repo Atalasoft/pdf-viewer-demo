@@ -420,7 +420,7 @@ namespace Atalasoft.Demo.PdfViewer
             this._thumbnailView.TabIndex = 2;
             this._thumbnailView.Text = "thumbnailView1";
             this._thumbnailView.ThumbnailBackground = null;
-            this._thumbnailView.ThumbnailOffset = new System.Drawing.Point(0, 0);
+            this._thumbnailView.ThumbnailOffset = new System.Drawing.Point(0, 1);
             this._thumbnailView.ThumbnailSize = new System.Drawing.Size(100, 100);
             this._thumbnailView.SelectedIndexChanged += new System.EventHandler(this.ThumbnailViewOnSelectedIndexChanged);
             // 
