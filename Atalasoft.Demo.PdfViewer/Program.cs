@@ -5,10 +5,7 @@
 // ------------------------------------------------------------------------------------
 
 using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Atalasoft.Demo.PdfViewer.Properties;
-using Squirrel;
 
 namespace Atalasoft.Demo.PdfViewer
 {
@@ -20,33 +17,7 @@ namespace Atalasoft.Demo.PdfViewer
 		[STAThread]
 		static void Main()
 		{
-		    Task.Run(async () =>
-		    {
-		        try
-		        {
-		            using (var manager = await UpdateManager.GitHubUpdateManager("https://github.com/Atalasoft/pdf-viewer-demo"))
-		            {
-		                if (manager != null)
-		                {
-		                    var result = await manager.UpdateApp();
-		                    if (result != null)
-		                    {
-		                        if (MessageBox.Show(Resources.UpdateAvailableQuestion, Resources.UpdateAvailable, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-		                        {
-		                            UpdateManager.RestartApp();
-		                        }
-		                    }
-		                }
-		            }
-		        }
-
-		        catch (Exception ex)
-		        {
-		            MessageBox.Show(ex.Message, Resources.UpgradeErrorMessage, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-		        }
-		    });          
-
-            Application.EnableVisualStyles();
+			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
 		}
