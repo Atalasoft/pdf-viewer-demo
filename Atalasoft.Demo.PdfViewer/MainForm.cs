@@ -5,6 +5,7 @@
 // ------------------------------------------------------------------------------------
 
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -26,6 +27,8 @@ namespace Atalasoft.Demo.PdfViewer
     {
         #region Fields
 
+        private const double PdfDpi = 72.0;
+
         private Document _docToPrint;
         private Pages _imagesToPrint;
         private int _current;
@@ -41,6 +44,10 @@ namespace Atalasoft.Demo.PdfViewer
 
         private bool _isUpperLimit;
         private bool _isLowerLimit;
+
+        private int _currentPage;
+        
+        private bool _ignoreBookmarkSelection;
 
         #endregion
 
@@ -80,6 +87,20 @@ namespace Atalasoft.Demo.PdfViewer
 
         #endregion
 
+        #region Properties
+
+        private int CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                _currentPageBox.Text = (_currentPage + 1).ToString();
+            }
+        }
+
+        #endregion
+
         #region Event handlers
 
         #region Menu event handlers
@@ -92,12 +113,9 @@ namespace Atalasoft.Demo.PdfViewer
             var file = _openFileDialog.FileName;
             var frameCount = RegisteredDecoders.GetImageInfo(file, 0).FrameCount;
 
+            _totalPageLabel.Text = @"of " + frameCount;
             _thumbnailView.Items.Cancel();
             _thumbnailView.Items.Clear();
-
-            //reset progress bar
-            _progressBar.Maximum = frameCount;
-            _progressBar.Value = 0;
 
             // Create the Thumbnail objects and pass them into the ThumbnailView all at once.
             var thumbs = new Thumbnail[frameCount];
@@ -108,9 +126,7 @@ namespace Atalasoft.Demo.PdfViewer
             _thumbnailView.Items.AddRange(thumbs);
 
             //open the first full size page
-            _workspaceViewer.Open(file, 0);
-
-            ResetZoomButtons();
+            ViewPage(0);
 
             _extractedImages = false;
             _currentFile = file;
@@ -148,17 +164,11 @@ namespace Atalasoft.Demo.PdfViewer
             {
                 using (var document = new Document(fs))
                 {
-                    //reset progress bar, estimate one image per page
-                    _progressBar.Maximum = 0;
-                    _progressBar.Value = 0;
-
 
                     for (var i = 0; i < document.Pages.Count; i++)
                     {
 
                         var extractedImages = document.Pages[i].ExtractImages();
-                        // check progressbar
-                        _progressBar.Maximum += extractedImages.Length;
                         foreach (var info in extractedImages)
                         {
                             _workspaceViewer.Images.Add((AtalaImage)info.Image.Clone());
@@ -191,23 +201,21 @@ namespace Atalasoft.Demo.PdfViewer
             _workspaceViewer.Save(_saveFileDialog.FileName, encoder);
         }
 
-        private void MenuViewFullSizeOnClick(object sender, EventArgs e)
+        private void MenuExitOnClick(object sender, EventArgs e)
         {
-            SetZoomMode(AutoZoomMode.None);
+            Close();
+        }
+
+        private void MenuViewItemOnClick(object sender, EventArgs e)
+        {
+            var button = sender as ToolStripItem;
+
+            if (button == null)
+                return;
+            var zoomMode = (AutoZoomMode)button.Tag;
+            _workspaceViewer.AutoZoom = zoomMode;
+
             _workspaceViewer.Zoom = 1;
-            _menuViewFullSize.Checked = true;
-        }
-
-        private void MenuViewFitWidthOnClick(object sender, EventArgs e)
-        {
-            SetZoomMode(AutoZoomMode.FitToWidth);
-            _menuViewFitWidth.Checked = true;
-        }
-
-        private void MenuViewBestFitOnClick(object sender, EventArgs e)
-        {
-            SetZoomMode(AutoZoomMode.BestFit);
-            _menuViewBestFit.Checked = true;
         }
 
         private void MenuAboutOnClick(object sender, EventArgs e)
@@ -226,7 +234,7 @@ namespace Atalasoft.Demo.PdfViewer
         {
             if (_findDialog != null || _currentFile == null)
                 return;
-            _pdfDocSearch = new PdfDocumentSearch(GetCurrentPage());
+            _pdfDocSearch = new PdfDocumentSearch(CurrentPage);
             _findDialog = new FindDialog();
             _findDialog.Closed += FindDialogOnClosed;
             _findDialog.FindNext += FindDialogOnFindNext;
@@ -279,14 +287,6 @@ namespace Atalasoft.Demo.PdfViewer
                     return;
                 ScrollToNextPage(position);
             }
-        }
-
-        private void ThumbnailViewOnThumbnailLoad(object sender, ThumbnailEventArgs e)
-        {
-            // update the progressbar for every thumbnail load.
-            _progressBar.Value += 1;
-            if (_progressBar.Value == _progressBar.Maximum)
-                _progressBar.Value = 0;
         }
 
         #region Printing
@@ -360,14 +360,21 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
-        #region Mouse tools event
-
-        private void PanButtonOnCheckedChanged(object sender, EventArgs e)
+        private void MouseToolButtonsOnCheckedChanged(object sender, EventArgs e)
         {
-            if (_panButton.Checked)
+            var btn = sender as ToolStripButton;
+            if (btn == null)
+                return;
+
+            if (btn.Checked)
             {
-                ResetMouseToolsButtons(_panButton);
-                _workspaceViewer.MouseTool = MouseToolType.Pan;
+                var mouseToolType = (MouseToolType)btn.Tag;
+                ResetMouseToolsButtons(btn);
+                _workspaceViewer.MouseTool = mouseToolType;
+                if (mouseToolType == MouseToolType.Zoom || mouseToolType == MouseToolType.ZoomArea)
+                {
+                    _workspaceViewer.AutoZoom = AutoZoomMode.None;
+                }
             }
             else
             {
@@ -375,72 +382,33 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
-        private void MagnifierButtonOnCheckedChanged(object sender, EventArgs e)
+        private void PreviousPageButtonOnClick(object sender, EventArgs e)
         {
-            if (_magnifierButton.Checked)
-            {
-                ResetMouseToolsButtons(_magnifierButton);
-                _workspaceViewer.MouseTool = MouseToolType.Magnifier;
-            }
-            else
-            {
-                _workspaceViewer.MouseTool = MouseToolType.None;
-            }
+            if (CurrentPage != 0)
+                ViewPage(CurrentPage - 1);
         }
 
-        private void ZoomButtonOnCheckedChanged(object sender, EventArgs e)
+        private void NextPageButtonOnClick(object sender, EventArgs e)
         {
-            if (_zoomButton.Checked)
-            {
-                ResetMouseToolsButtons(_zoomButton);
-                _workspaceViewer.MouseTool = MouseToolType.Zoom;
-                SetZoomMode(AutoZoomMode.None);
-            }
-            else
-            {
-                _workspaceViewer.MouseTool = MouseToolType.None;
-            }
+            if (CurrentPage + 1 < _thumbnailView.Items.Count)
+                ViewPage(CurrentPage + 1);
         }
 
-        private void ZoomAreaButtonOnCheckedChanged(object sender, EventArgs e)
+        private void ZoomInButtonOnClick(object sender, EventArgs e)
         {
-            if (_zoomAreaButton.Checked)
-            {
-                ResetMouseToolsButtons(_zoomAreaButton);
-                _workspaceViewer.MouseTool = MouseToolType.ZoomArea;
-                SetZoomMode(AutoZoomMode.None);
-            }
-            else
-            {
-                _workspaceViewer.MouseTool = MouseToolType.None;
-            }
+            _workspaceViewer.AutoZoom = AutoZoomMode.None;
+            _workspaceViewer.Zoom *= 2;
         }
 
-        #endregion
+        private void ZoomOutButtonOnClick(object sender, EventArgs e)
+        {
+            _workspaceViewer.AutoZoom = AutoZoomMode.None;
+            _workspaceViewer.Zoom /= 2;
+        }
 
         #endregion
 
         #region Private methods
-
-        private void SetZoomMode(AutoZoomMode zoomMode)
-        {
-            _workspaceViewer.AutoZoom = zoomMode;
-            ResetZoomButtons();
-        }
-
-        private void ResetZoomButtons(ToolStripMenuItem exceptButton = null)
-        {
-            foreach (ToolStripMenuItem item in _menuView.DropDownItems)
-            {
-                if (item != exceptButton)
-                    item.Checked = false;
-            }
-        }
-
-        private int GetCurrentPage()
-        {
-            return _thumbnailView.SelectedIndices.Length > 0 ? _thumbnailView.SelectedIndices[0] : 0;
-        }
 
         private void ShowLicenseMessage(string product)
         {
@@ -474,28 +442,28 @@ namespace Atalasoft.Demo.PdfViewer
 
         private void ScrollToNextPage(Point position)
         {
-            if (GetCurrentPage() == _thumbnailView.Items.Count - 1)
+            if (CurrentPage == _thumbnailView.Items.Count - 1)
                 return;
             if (!_isLowerLimit)
             {
                 _isLowerLimit = true;
                 return;
             }
-            ViewPage(GetCurrentPage() + 1);
+            ViewPage(CurrentPage + 1);
             _workspaceViewer.ScrollPosition = new Point(position.X, 0);
             _isLowerLimit = false;
         }
 
         private void ScrollToPreviousPage(Point position)
         {
-            if (GetCurrentPage() == 0)
+            if (CurrentPage == 0)
                 return;
             if (!_isUpperLimit)
             {
                 _isUpperLimit = true;
                 return;
             }
-            ViewPage(GetCurrentPage() - 1);
+            ViewPage(CurrentPage - 1);
             _workspaceViewer.ScrollPosition = new Point(position.X, GetLowerScrollPosition());
             _isUpperLimit = false;
         }
@@ -515,6 +483,7 @@ namespace Atalasoft.Demo.PdfViewer
                 _workspaceViewer.Annotations.CurrentLayer.Items.Clear();
             }
             _thumbnailView.Items[number].Selected = true;
+            CurrentPage = number;
         }
 
         private void ResetMouseToolsButtons(ToolStripButton exceptButton = null)
@@ -526,13 +495,132 @@ namespace Atalasoft.Demo.PdfViewer
             }
         }
 
+        private void CurrentPageBoxOnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CurrentPageBoxOnLeave(object sender, EventArgs e)
+        {
+            if (_thumbnailView.Items.Count == 0 || string.IsNullOrEmpty(_currentPageBox.Text))
+                return;
+            var number = Convert.ToInt32(_currentPageBox.Text) - 1;
+            ViewPage(Math.Min(number, _thumbnailView.Items.Count - 1));
+
+        }
+
+        private void CurrentPageBoxOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_thumbnailView.Items.Count == 0 || string.IsNullOrEmpty(_currentPageBox.Text))
+                    return;
+                var number = Convert.ToInt32(_currentPageBox.Text) - 1;
+                ViewPage(Math.Min(number, _thumbnailView.Items.Count - 1));
+            }
+        }
+
         #endregion
 
         #region Bookmark Code
 
+        private void CollapseAllButtonOnClick(object sender, EventArgs e)
+        {
+            _treeBookmarks.CollapseAll();
+        }
+
+        private void ExpandAllButtonOnClick(object sender, EventArgs e)
+        {
+            _treeBookmarks.ExpandAll();
+        }
+
+        private void CurrentBookmarkButtonOnClick(object sender, EventArgs e)
+        {
+            _ignoreBookmarkSelection = true;
+            try
+            {
+                SeekBookmark(_currentPage, _workspaceViewer.ScrollPosition.Y);
+            }
+            finally
+            {
+                _ignoreBookmarkSelection = false;
+            }
+        }
+
+        private void SeekBookmark(int pageIndex, int scrollPos)
+        {
+            var offset = (scrollPos + _workspaceViewer.Image.Height) * PdfDpi / _workspaceViewer.Image.Resolution.Y;
+            var node = GetNearestBookmark(_treeBookmarks.Nodes, pageIndex, offset);
+            _treeBookmarks.SelectedNode = node;
+            _treeBookmarks.Focus();
+        }
+
+        private TreeNode GetNearestBookmark(ICollection nodes, int pageIndex, double offset)
+        {
+            if (nodes == null || nodes.Count == 0)
+                return null;
+
+            TreeNode prevNode = null;
+            foreach (TreeNode node in nodes)
+            {
+                if (GetIsNodeBeforePosition(node, pageIndex, offset) == false)
+                {
+                    if (prevNode == null)
+                        return node;
+                    var kid = GetNearestBookmark(prevNode.Nodes, pageIndex, offset);
+                    return kid ?? prevNode;
+                }
+
+                prevNode = node;
+            }
+
+            if (prevNode == null)
+                return null;
+            return GetNearestBookmark(prevNode.Nodes, pageIndex, offset) ?? prevNode;
+        }
+
+        private bool? GetIsNodeBeforePosition(TreeNode node, int pageIndex, double offset)
+        {
+            if (node == null)
+                return null;
+            var destination = GetDestionation(node);
+            var page = destination.Page as PdfIndexedPageReference;
+            if (page == null)
+                return null;
+            if (page.PageIndex > pageIndex)
+                return false;
+            if (page.PageIndex < pageIndex)
+                return true;
+            return !(destination.Top < offset);
+        }
+
+        private PdfDestination GetDestionation(TreeNode node)
+        {
+            if (node == null)
+                return null;
+            var bm = node.Tag as PdfBookmark;
+            if (bm == null || bm.ClickAction.Count <= 0)
+                return null;
+            var action = bm.ClickAction[0];
+            if (action.ActionType != PdfActionType.GoToView)
+                return null;
+
+            var gotoView = action as PdfGoToViewAction;
+            if (gotoView == null || gotoView.Destination == null || gotoView.Destination.Page == null)
+                return null;
+
+            return gotoView.Destination;
+        }
+
         // When a bookmark is selected, load the page and scroll to the bookmark position.
         private void TreeBookmarksOnAfterSelect(object sender, TreeViewEventArgs e)
         {
+            if(_ignoreBookmarkSelection)
+                return;
+
             var bm = e.Node.Tag as PdfBookmark;
             if (bm == null || bm.ClickAction.Count <= 0)
                 return;
@@ -548,12 +636,12 @@ namespace Atalasoft.Demo.PdfViewer
             if (page.PageIndex < 0 || page.PageIndex >= _thumbnailView.Items.Count)
                 return;
             // Selecting the thumbnail will load the page.
-            var pageIndex = GetCurrentPage();
+            var pageIndex = CurrentPage;
             if (pageIndex != page.PageIndex)
             {
                 _thumbnailView.ClearSelection();
                 _thumbnailView.Items[page.PageIndex].Selected = true;
-                _thumbnailView.ScrollTo(page.PageIndex);
+                _thumbnailView.ScrollTo(_thumbnailView.Items[page.PageIndex]);
             }
 
             // The bookmark coordinates are in PDF page coordinates.
@@ -561,7 +649,7 @@ namespace Atalasoft.Demo.PdfViewer
             // Units are 1/72”
 
             var y = gotoView.Destination.Top.HasValue
-                ? Convert.ToInt32(gotoView.Destination.Top.Value / 72.0 * _workspaceViewer.Image.Resolution.Y)
+                ? Convert.ToInt32(gotoView.Destination.Top.Value / PdfDpi * _workspaceViewer.Image.Resolution.Y)
                 : 0;
             y = _workspaceViewer.Image.Height - y;
             _workspaceViewer.ScrollPosition = new Point(0, -y);
