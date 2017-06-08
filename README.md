@@ -5,7 +5,7 @@ Demo application shows usage of PDF functionality that [DotImage](https://www.at
 
 ## Description
 
-![](Images/app.png)
+![](Images/App.png)
 
 ## Licensing
 To run the demo locally, you need to have DotImage license. There are various way to acquire the license:
